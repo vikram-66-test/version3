@@ -1,1499 +1,185 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>QuizForge — SSC & RRB Practice</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Oswald:wght@600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuizForge | Practice Tests</title>
 <style>
-/* ── THEME VARIABLES ─────────────────────────────────────────────────────── */
-[data-theme="dark"] {
-  --bg:        #080E1A;
-  --surface:   #0F1926;
-  --card:      #131F2E;
-  --border:    #1E2F45;
-  --text:      #E8EDF5;
-  --muted:     #6B7E96;
-  --input-bg:  #0C1520;
-  --shadow:    rgba(0,0,0,0.4);
-}
-[data-theme="light"] {
-  --bg:        #F4F6FA;
-  --surface:   #FFFFFF;
-  --card:      #FFFFFF;
-  --border:    #DDE3EE;
-  --text:      #1A2535;
-  --muted:     #7A8BA0;
-  --input-bg:  #F0F3FA;
-  --shadow:    rgba(0,0,0,0.08);
-}
+:root{color-scheme:light;--page:#f4f7f9;--surface:#fff;--text:#24323e;--muted:#5e6f7b;--line:#d9e3e9;--head:#087e9f;--head-text:#fff;--accent:#087d9e;--accent-text:#fff;--soft:#e9f5f9;--side:#e1f0f6;--side-head:#c9e5ef;--green:#157c4b;--green-bg:#e5f5eb;--red:#b33d39;--red-bg:#fff0ee;--neutral:#eef2f5;--shadow:0 3px 14px #203e5310}
+html[data-theme=dark]{color-scheme:dark;--page:#101419;--surface:#171d24;--text:#e2e9ef;--muted:#a4b1be;--line:#34414d;--head:#102c38;--head-text:#e7f5fa;--accent:#77c8e2;--accent-text:#12232d;--soft:#203641;--side:#192a34;--side-head:#243d49;--green:#8cd6a9;--green-bg:#20392e;--red:#f2a09b;--red-bg:#3c292a;--neutral:#252e37;--shadow:none}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font:16px/1.55 Arial,"Nirmala UI","Noto Sans Devanagari",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button{color:inherit}h1,h2,h3,p{margin:0}h1{font-size:26px;line-height:1.25}h2{font-size:20px;line-height:1.35}h3{font-size:16px}small,.muted{color:var(--muted)}[hidden]{display:none!important}.screen{display:none}.screen.active{display:block}.header{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:68px;background:var(--head);color:var(--head-text);padding:12px clamp(16px,3vw,38px)}.brand{font-weight:750;font-size:23px;letter-spacing:-.55px;line-height:1.2}.header small{display:block;color:inherit;opacity:.9;font-size:13px;margin-top:3px}.header-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}.theme-btn,.head-btn{border:1px solid #ffffff70;border-radius:6px;background:#ffffff12;color:inherit;padding:7px 12px;font-size:14px;font-weight:600;white-space:nowrap}.theme-btn:hover,.head-btn:hover{background:#ffffff26}.shell{width:min(100% - 32px,720px);margin:38px auto 48px}.intro{margin-bottom:22px}.intro p{margin-top:7px;color:var(--muted)}.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:var(--shadow)}.btn{border:1px solid var(--line);border-radius:6px;padding:10px 17px;background:var(--surface);font-weight:600;min-height:43px;line-height:1.3}.btn:hover:not(:disabled){background:var(--soft);border-color:var(--accent)}.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-text)}.primary:hover:not(:disabled){background:var(--accent);filter:brightness(.94)}.danger{color:var(--red)}.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}.actions .btn{flex:1}.tabs{display:flex;border-bottom:1px solid var(--line);gap:4px;margin-bottom:20px}.tab{background:none;border:0;border-bottom:3px solid transparent;padding:10px 16px;color:var(--muted);font-weight:600;flex:1}.tab.active{border-bottom-color:var(--accent);color:var(--accent)}.drop{min-height:178px;display:grid;align-content:center;justify-items:center;text-align:center;border:2px dashed var(--line);border-radius:8px;background:var(--page);padding:24px;cursor:pointer;gap:8px}.drop:hover,.drop.drag{border-color:var(--accent);background:var(--soft)}.drop svg{color:var(--accent)}.drop p{color:var(--muted);font-size:14px}.format{margin-top:18px;padding:12px 15px;border:1px solid var(--line);background:var(--page);border-radius:6px;font-size:13px}.format code{display:block;margin-top:4px;white-space:normal;overflow-wrap:anywhere;color:var(--muted)}textarea{width:100%;min-height:170px;resize:vertical;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:12px;font:14px/1.6 monospace}label.field-label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}.message{margin-top:12px;font-size:14px;color:var(--green)}.error{color:var(--red)}.choices{display:grid;gap:10px}.choice{width:100%;text-align:left;display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:7px}.choice:hover,.choice.selected{background:var(--soft);border-color:var(--accent)}.choice.selected{box-shadow:inset 3px 0 var(--accent)}.choice strong{display:block;font-size:16px}.choice small{display:block;margin-top:3px;font-size:13px}.choice-mark{border:1px solid var(--line);width:20px;height:20px;border-radius:50%;flex:none;display:grid;place-items:center}.choice.selected .choice-mark{border:6px solid var(--accent)}.presets{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}.presets button{flex:1}.presets .selected{background:var(--soft);border-color:var(--accent);color:var(--accent)}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}.field input{width:100%;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--text);padding:10px 12px}.checkline{display:flex;align-items:center;gap:9px;margin:16px 0}.checkline input{width:19px;height:19px;accent-color:var(--accent)}.info-table{margin:16px 0;background:var(--page);border:1px solid var(--line);border-radius:6px;padding:8px 14px}.info-row{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}.info-row:last-child{border:0}.info-row strong{text-align:right}.subheading{margin:14px 0 8px;font-size:14px;font-weight:600;color:var(--muted)}
+/* Exam workspace: wide question panel and blue navigation sidebar. */
+#quizScreen.active{display:flex;flex-direction:column;height:100dvh;min-height:0;background:var(--surface)}.exam-header{flex:none}.timer{font-variant-numeric:tabular-nums;font-size:22px;font-weight:700;line-height:1.2;white-space:nowrap}.timer.urgent{color:#ffdb9a}.timer-label{font-size:11px;display:block;font-weight:400;opacity:.9}.section-bar{flex:none;display:flex;gap:6px;overflow-x:auto;background:var(--page);border-bottom:1px solid var(--line);padding:9px 18px;align-items:center}.section-bar span{font-size:13px;white-space:nowrap;padding:6px 10px;border-radius:4px;color:var(--muted)}.section-bar .active-sec{background:var(--accent);color:var(--accent-text)}.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,23%);flex:1;min-height:0}.exam-main{min-width:0;display:flex;flex-direction:column;min-height:0}.q-meta{padding:14px clamp(16px,2.5vw,32px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;flex-wrap:wrap}.q-meta strong{font-size:17px}.marks{font-size:13px;color:var(--muted);white-space:nowrap}.positive{color:var(--green)}.negative{color:var(--red)}.question-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:25px clamp(16px,2.5vw,32px) 30px}.q-text{font-size:clamp(18px,1.7vw,22px);line-height:1.65;font-weight:400;white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:22px;max-width:100ch}.options{display:grid;gap:8px;max-width:110ch}.option{display:flex;align-items:flex-start;gap:13px;width:100%;padding:15px 14px;border:1px solid transparent;border-radius:5px;background:var(--surface);text-align:left;font-size:clamp(16px,1.4vw,19px);line-height:1.55}.option:hover{background:var(--page);border-color:var(--line)}.option.selected{background:var(--soft);border-color:var(--accent)}.radio{margin-top:4px;width:19px;height:19px;border:1.5px solid var(--muted);border-radius:50%;display:grid;place-items:center;flex:none}.selected .radio{border-color:var(--accent)}.selected .radio:after{content:"";width:9px;height:9px;background:var(--accent);border-radius:50%}.opt-letter{color:var(--muted);font-size:.9em;font-weight:600;flex:none}.opt-text{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}.exam-footer{flex:none;background:var(--page);border-top:1px solid var(--line);padding:12px 16px;display:grid;grid-template-columns:1fr 1fr 1.2fr 1fr;gap:8px}.sidebar{display:flex;flex-direction:column;min-height:0;background:var(--side);border-left:1px solid var(--line)}.side-summary{padding:18px 16px 14px}.side-summary h2{font-size:16px;margin-bottom:10px}.progress-track{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:10px 0}.progress-fill{height:100%;background:var(--accent);transition:width .15s}.legend{display:flex;flex-wrap:wrap;gap:7px 14px;font-size:12px;margin-top:10px}.legend span{display:flex;gap:6px;align-items:center}.legend i{width:14px;height:14px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}.legend .answered-key{background:var(--green);border-color:var(--green)}.legend .current-key{border:2px solid var(--accent);background:var(--soft)}.palette-head{background:var(--side-head);padding:10px 16px;font-size:14px;font-weight:600;flex:none}.palette{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;align-content:start;padding:16px;overflow-y:auto;min-height:0;overscroll-behavior:contain}.dot{height:38px;min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:5px;font-size:14px;font-weight:600}.dot.answered{background:var(--green);color:var(--surface);border-color:var(--green)}.dot.current{outline:2px solid var(--accent);outline-offset:2px}.dot:hover{border-color:var(--accent)}.pause-overlay{position:fixed;inset:0;z-index:10;background:#132531b5;display:grid;place-items:center;padding:20px}.pause-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;width:min(100%,400px);padding:28px;text-align:center;box-shadow:0 15px 60px #0003}.pause-card h2{margin-bottom:8px}.pause-card p{color:var(--muted);margin-bottom:20px}.pause-card .btn{width:100%}
+/* Report */
+.report-shell{width:min(100% - 32px,1080px);margin:30px auto 48px}.report-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}.report-heading p{color:var(--muted);margin-top:5px;font-size:14px}.report-summary{background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow);padding:23px}.score-block{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}.score-label{font-size:13px;color:var(--muted);font-weight:600}.score-value{font-size:38px;font-weight:700;letter-spacing:-1px;line-height:1.3;font-variant-numeric:tabular-nums}.score-value small{font-size:19px;letter-spacing:0;font-weight:400}.report-meta{font-size:14px;color:var(--muted);text-align:right}.report-meta strong{color:var(--text)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.stat{padding:13px 15px;border-radius:6px;background:var(--page);border:1px solid var(--line)}.stat strong{display:block;font-size:25px;line-height:1.2;font-variant-numeric:tabular-nums}.stat span{font-size:13px;color:var(--muted)}.stat.correct strong{color:var(--green)}.stat.wrong strong{color:var(--red)}.distribution{height:8px;display:flex;border-radius:8px;overflow:hidden;margin-top:18px;background:var(--neutral)}.distribution span:nth-child(1){background:var(--green)}.distribution span:nth-child(2){background:var(--red)}.distribution span:nth-child(3){background:var(--line)}.review{margin-top:25px}.review-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.review-heading h2{font-size:19px}.review-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;break-inside:avoid}.review-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:var(--muted);font-size:13px;font-weight:600}.status{font-size:12px;font-weight:600;border-radius:4px;padding:3px 8px;background:var(--neutral);color:var(--muted)}.status.wrong{background:var(--red-bg);color:var(--red)}.review-q{font-size:17px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:14px}.review-options{display:grid;gap:5px;margin-bottom:12px;font-size:14px;color:var(--muted)}.review-options div{white-space:pre-wrap;overflow-wrap:anywhere}.answer-line{font-size:14px;line-height:1.6;overflow-wrap:anywhere}.answer-line strong{color:var(--text)}.answer-line.correct{color:var(--green)}.answer-line.wrong{color:var(--red)}.empty-note{padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:7px;color:var(--muted)}.round-details{margin-top:12px;font-size:14px;color:var(--muted)}
+@media(max-width:800px){.exam-layout{grid-template-columns:minmax(0,1fr) 220px}.palette{gap:7px;padding:12px;grid-template-columns:repeat(4,minmax(0,1fr))}.side-summary{padding:12px}.exam-footer{padding:10px;gap:5px}.exam-footer .btn{padding:8px 5px;font-size:13px}.q-text{font-size:18px}}
+@media(max-width:600px){.header{padding:10px 12px;gap:8px;min-height:60px}.brand{font-size:19px}.header small{font-size:12px}.theme-btn,.head-btn{padding:6px 8px;font-size:12px}.header-actions{gap:5px}.timer{font-size:18px}.timer-label{font-size:10px}.shell{margin:22px auto;width:calc(100% - 24px)}.panel{padding:16px}.fields{gap:10px}.intro h1{font-size:24px}.exam-layout{display:flex;flex-direction:column}.exam-main{flex:1;min-height:0;order:2}.sidebar{order:1;border-left:0;border-bottom:1px solid var(--line);flex:none}.side-summary{padding:7px 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.side-summary h2{display:none}.side-summary .progress-track{flex:1;margin:0;min-width:35px}.side-summary .legend{margin:0;font-size:11px;gap:8px;flex-basis:100%}.side-summary .legend>span:last-child{display:none}.side-summary #progressText{font-size:12px}.palette-head{display:none}.palette{display:flex;overflow-x:auto;overflow-y:hidden;padding:7px 12px 10px;gap:8px}.dot{flex:0 0 34px;height:34px;font-size:13px}.q-meta{padding:9px 12px;font-size:13px}.q-meta strong{font-size:15px}.question-scroll{padding:16px 12px 20px}.q-text{font-size:17px;line-height:1.65;margin-bottom:15px}.option{font-size:16px;padding:12px 9px;gap:9px}.exam-footer{grid-template-columns:repeat(2,minmax(0,1fr));padding:7px 10px max(7px,env(safe-area-inset-bottom));gap:6px}.exam-footer .btn{min-height:39px;font-size:13px}.report-shell{width:calc(100% - 24px);margin:20px auto}.report-summary{padding:15px}.score-value{font-size:31px}.score-value small{font-size:16px}.score-block{gap:10px}.report-meta{font-size:12px}.stats{gap:6px}.stat{padding:10px 8px}.stat strong{font-size:22px}.stat span{font-size:12px}.review-card{padding:14px}.review-q{font-size:16px}.report-heading .btn{width:100%}.section-bar{padding:5px 10px}.section-bar span{font-size:12px;padding:4px 8px}}
+@media(max-width:370px){.exam-header .brand{font-size:16px}.exam-header small{max-width:122px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.exam-header .theme-btn{font-size:0}.exam-header .theme-btn:before{content:'◐';font-size:16px}.side-summary .legend{gap:5px}.fields{grid-template-columns:1fr}.stat span{font-size:11px}}
+
+/* EDIT THESE TWO VALUES to change exam question and option text size. */
 :root {
-  --gold:      #C9A84C;
-  --gold-lt:   #F0D080;
-  --gold-dim:  #7A6128;
-  --green:     #22C55E;
-  --red:       #EF4444;
-  --blue:      #3B82F6;
-  --radius:    14px;
+  --question-font-size: 18px;
+  --option-font-size: 16px;
+  --review-yellow: #f6cf59;
+  --review-ink: #392b08;
 }
+html,body{height:100%;width:100%;overflow:hidden;overscroll-behavior:none}
+.screen.active{height:100vh;height:100dvh;overflow-y:auto;overscroll-behavior:contain}
+#quizScreen.active{height:100vh;height:100dvh;overflow:hidden}
+.exam-layout,.exam-main,.sidebar{min-height:0;min-width:0;overflow:hidden}
+.exam-header{min-height:54px;padding:8px clamp(12px,2vw,28px)}
+.q-meta{padding:9px clamp(12px,2vw,25px)}
+.question-scroll{padding:15px clamp(12px,2vw,25px);overflow:auto;scrollbar-gutter:auto}
+.q-text{font-size:var(--question-font-size);line-height:1.5;margin-bottom:14px;max-width:none}
+.options{gap:4px;max-width:none}
+.option{font-size:var(--option-font-size);line-height:1.45;padding:8px 10px;gap:10px}
+.radio{width:17px;height:17px;margin-top:3px}
+.exam-footer{padding:8px 10px;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.exam-footer .btn{font-size:13px;min-height:38px;padding:7px 5px}
+.review-btn,.review-btn:hover:not(:disabled){background:var(--review-yellow);border-color:#d4a92e;color:var(--review-ink)}
+.review-btn[aria-pressed=true]{background:#e9b92d;border-color:#a47a09}
+.side-summary{padding:12px 12px 10px;flex:none}.side-summary h2{margin-bottom:5px}.palette-head{padding:7px 12px}
+.palette{flex:1;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:10px;min-height:0;overflow-y:auto}
+.dot{height:30px;max-width:42px;width:100%;font-size:12px;border-radius:4px}
+.dot.reviewed,.legend .review-key{background:var(--review-yellow);border-color:#d4a92e;color:var(--review-ink)}
+.dot.reviewed.answered{box-shadow:inset 0 -4px #157c4b}
+.legend{gap:5px 10px;margin-top:6px}.legend i{flex:none}
+.report-table-wrap{overflow-x:auto}.report-table{width:100%;border-collapse:collapse;font-size:14px;white-space:nowrap}.report-table th,.report-table td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}.report-table th{background:var(--page);color:var(--muted);font-weight:600}.report-table tbody tr:last-child td{border-bottom:0}.report-table td:first-child{white-space:normal}.history-panel{margin-top:20px}.storage-note{font-size:12px;color:var(--muted);margin-top:8px}.exam-header .storage-warning{color:#ffe1a6;max-width:240px;white-space:normal;font-size:11px}.report-shell .panel{padding:15px}.timing-note{color:var(--muted);font-size:13px;margin:0 0 10px}.time-details summary{cursor:pointer;font-weight:600;padding:8px 0}.time-details[open] summary{margin-bottom:8px}
+@media(max-width:800px){.palette{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.exam-footer .btn{font-size:12px}}
+@media(max-width:600px){.exam-header{min-height:49px;padding:6px 10px}.exam-header .brand{font-size:17px}.exam-header small{font-size:11px}.side-summary{padding:5px 10px;gap:5px}.side-summary .legend{gap:5px 9px}.side-summary .legend>span:last-child{display:flex}.palette{flex:none;display:flex;overflow-x:auto;overflow-y:hidden;padding:6px 10px 8px;gap:6px}.dot{flex:0 0 30px;height:30px}.q-meta{padding:6px 10px}.question-scroll{padding:10px 12px}.q-text{font-size:var(--question-font-size);line-height:1.45;margin-bottom:10px}.option{font-size:var(--option-font-size);line-height:1.4;padding:7px 6px;gap:7px}.exam-footer{grid-template-columns:repeat(3,minmax(0,1fr));padding:5px 8px max(5px,env(safe-area-inset-bottom));gap:5px}.exam-footer .btn{min-height:33px;font-size:12px;padding:5px 3px}.exam-footer #nextBtn{grid-column:span 2}.report-table th,.report-table td{padding:7px 8px;font-size:12px}}
+@media(max-height:540px) and (min-width:601px){.exam-header{min-height:40px;padding:4px 12px}.q-meta{padding:4px 12px}.question-scroll{padding:6px 12px}.exam-footer{padding:4px}.exam-footer .btn{min-height:30px}.side-summary{padding:6px 10px}.side-summary h2{display:none}}
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;overflow:hidden;}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg); color:var(--text);
-  height:100dvh; display:flex; flex-direction:column;
-  transition:background 0.3s,color 0.3s;
-}
-
-.screen{display:none;flex-direction:column;height:100dvh;overflow:hidden;}
-.screen.active{display:flex;}
-
-/* ── THEME TOGGLE ─────────────────────────────────────────────────────────── */
-.theme-btn{
-  background:var(--card); border:1.5px solid var(--border);
-  border-radius:8px; padding:5px 10px;
-  font-size:16px; cursor:pointer;
-  color:var(--text); transition:all 0.2s;
-  line-height:1;
-}
-.theme-btn:hover{border-color:var(--gold);}
-
-/* ══════════════════════════════════════════
-   UPLOAD SCREEN
-══════════════════════════════════════════ */
-#uploadScreen{
-  align-items:center; justify-content:flex-start;
-  padding:20px 20px 16px;
-  overflow-y:auto;
-  background:var(--bg);
-}
-[data-theme="dark"] #uploadScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a40 0%,var(--bg) 65%);
-}
-
-.upload-topbar{
-  width:100%; display:flex; justify-content:space-between;
-  align-items:center; margin-bottom:14px;
-}
-.logo{
-  font-family:'Syne',sans-serif; font-weight:800;
-  font-size:24px; color:var(--gold-lt); letter-spacing:-0.5px;
-}
-.logo span{color:var(--gold);}
-.tagline{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
-
-.tab-row{
-  display:flex; width:100%; max-width:440px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:10px; padding:3px; gap:3px; margin-bottom:14px;
-}
-.tab-btn{
-  flex:1; padding:8px 4px; border:none; border-radius:8px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:12px;
-  cursor:pointer; background:transparent; color:var(--muted);
-  transition:all 0.2s;
-}
-.tab-btn.active{background:var(--gold);color:#080E1A;}
-
-/* File drop zone */
-.upload-box{
-  width:100%; max-width:440px;
-  background:var(--card); border:1.5px dashed var(--border);
-  border-radius:var(--radius); padding:24px 20px;
-  text-align:center; cursor:pointer;
-  transition:border-color 0.2s,background 0.2s;
-  margin-bottom:12px;
-}
-.upload-box:hover,.upload-box.drag{border-color:var(--gold);}
-.upload-icon{font-size:32px;margin-bottom:8px;}
-.upload-box h3{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;}
-.upload-box p{font-size:11px;color:var(--muted);line-height:1.5;}
-
-/* Paste zone */
-.paste-wrap{width:100%;max-width:440px;margin-bottom:12px;}
-.paste-wrap label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px;}
-#jsonPaste{
-  width:100%; height:130px;
-  background:var(--input-bg); border:1.5px solid var(--border);
-  border-radius:10px; color:var(--text);
-  font-family:'DM Sans',sans-serif; font-size:11px;
-  padding:10px 12px; resize:none; outline:none;
-  transition:border-color 0.2s;
-  line-height:1.5;
-}
-#jsonPaste:focus{border-color:var(--gold);}
-#jsonPaste::placeholder{color:var(--muted);}
-.paste-actions{display:flex;gap:8px;margin-top:8px;}
-.btn-sm{
-  flex:1; padding:9px 8px;
-  border-radius:8px; border:1.5px solid var(--border);
-  background:var(--card); color:var(--text);
-  font-family:'Syne',sans-serif; font-weight:700; font-size:12px;
-  cursor:pointer; transition:all 0.15s;
-}
-.btn-sm:hover{border-color:var(--gold-dim);}
-.btn-sm.gold{background:linear-gradient(135deg,var(--gold),#a07828);color:#080E1A;border:none;}
-
-.format-hint{
-  width:100%;max-width:440px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:10px; padding:12px 14px; margin-bottom:12px;
-}
-.format-hint h4{font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.format-hint code{
-  display:block;font-size:10px;color:var(--muted);
-  background:var(--input-bg);padding:7px 10px;border-radius:6px;
-  line-height:1.6;white-space:pre-wrap;word-break:break-all;
-}
-
-#uploadStatus{font-size:12px;color:var(--green);min-height:16px;text-align:center;margin-bottom:4px;width:100%;max-width:440px;}
-#uploadError{font-size:12px;color:var(--red);min-height:16px;text-align:center;margin-bottom:8px;width:100%;max-width:440px;}
-
-.btn-primary{
-  width:100%;max-width:440px;
-  background:linear-gradient(135deg,var(--gold),#a07828);
-  color:#080E1A; border:none; border-radius:10px;
-  padding:14px; font-family:'Syne',sans-serif;
-  font-weight:700; font-size:15px; cursor:pointer;
-  transition:opacity 0.2s,transform 0.1s;
-  margin-bottom:6px;
-}
-.btn-primary:hover{opacity:0.9;}
-.btn-primary:active{transform:scale(0.98);}
-.btn-primary:disabled{opacity:0.35;cursor:not-allowed;}
-#fileInput{display:none;}
-
-/* ══════════════════════════════════════════
-   MARKS SETUP SCREEN
-══════════════════════════════════════════ */
-#marksScreen{
-  align-items:center; justify-content:flex-start;
-  overflow-y:auto; padding:20px 20px 24px;
-  background:var(--bg);
-}
-[data-theme="dark"] #marksScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a40 0%,var(--bg) 65%);
-}
-
-.marks-topbar{
-  width:100%;max-width:440px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:20px;
-}
-.marks-topbar h2{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);}
-
-.section-label{
-  width:100%;max-width:440px;
-  font-size:10px;color:var(--gold);
-  text-transform:uppercase;letter-spacing:1.5px;
-  margin-bottom:8px;
-}
-.preset-row{
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:8px;width:100%;max-width:440px;margin-bottom:20px;
-}
-.preset-card{
-  background:var(--card);border:1.5px solid var(--border);
-  border-radius:10px;padding:10px 8px;text-align:center;
-  cursor:pointer;transition:all 0.15s;
-}
-.preset-card:hover,.preset-card.active{border-color:var(--gold);}
-.preset-card.active{background:#1c2a10;}
-.preset-card .pc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:var(--gold-lt);margin-bottom:3px;}
-.preset-card .pc-detail{font-size:9px;color:var(--muted);line-height:1.4;}
-
-.marks-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:10px;width:100%;max-width:440px;margin-bottom:16px;
-}
-.marks-field label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;}
-.marks-field input{
-  width:100%;background:var(--input-bg);
-  border:1.5px solid var(--border);border-radius:8px;
-  color:var(--text);font-family:'Syne',sans-serif;
-  font-weight:700;font-size:18px;
-  padding:10px 12px;outline:none;
-  transition:border-color 0.2s;text-align:center;
-}
-.marks-field input:focus{border-color:var(--gold);}
-
-.neg-row{
-  width:100%;max-width:440px;
-  background:var(--card);border:1.5px solid var(--border);
-  border-radius:10px;padding:14px 16px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:16px;
-}
-.neg-row .neg-label{font-size:13px;font-weight:500;}
-.neg-row .neg-sub{font-size:10px;color:var(--muted);margin-top:2px;}
-
-/* Toggle switch */
-.toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
-.toggle input{opacity:0;width:0;height:0;}
-.toggle-slider{
-  position:absolute;inset:0;
-  background:var(--border);border-radius:24px;cursor:pointer;
-  transition:background 0.2s;
-}
-.toggle-slider:before{
-  content:'';position:absolute;
-  width:18px;height:18px;border-radius:50%;
-  left:3px;top:3px;
-  background:#fff;transition:transform 0.2s;
-}
-.toggle input:checked+.toggle-slider{background:var(--gold);}
-.toggle input:checked+.toggle-slider:before{transform:translateX(20px);}
-
-.neg-fields{
-  width:100%;max-width:440px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:10px;padding:14px 16px;
-  margin-bottom:16px;display:none;
-}
-.neg-fields.show{display:block;}
-.neg-fields label{font-size:11px;color:var(--muted);display:block;margin-bottom:6px;}
-.neg-fields input{
-  width:100%;background:var(--input-bg);
-  border:1.5px solid var(--border);border-radius:8px;
-  color:var(--red);font-family:'Syne',sans-serif;
-  font-weight:700;font-size:18px;
-  padding:10px 12px;outline:none;text-align:center;
-  transition:border-color 0.2s;
-}
-.neg-fields input:focus{border-color:var(--red);}
-.neg-preview{font-size:11px;color:var(--muted);margin-top:8px;text-align:center;}
-.neg-preview span{color:var(--green);font-weight:600;}
-.neg-preview span.neg{color:var(--red);}
-
-/* ══════════════════════════════════════════
-   QUIZ SCREEN
-══════════════════════════════════════════ */
-#quizScreen{background:var(--bg);}
-
-.quiz-topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 16px 10px;
-  border-bottom:1px solid var(--border);
-  background:var(--surface);flex-shrink:0;
-}
-.quiz-title{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--gold-lt);}
-
-.timer-wrap{display:flex;align-items:center;gap:5px;}
-.timer-icon{font-size:13px;}
-#timerDisplay{
-  font-family:'Oswald',sans-serif;font-weight:600;
-  font-size:20px;color:var(--gold-lt);
-  min-width:52px;text-align:right;
-  letter-spacing:1px;
-  transition:color 0.3s;
-}
-#timerDisplay.warn  {color:#F59E0B;}
-#timerDisplay.danger{color:var(--red);animation:pulse 0.8s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.45}}
-
-.progress-bar-wrap{
-  padding:8px 16px 9px;
-  background:var(--surface);flex-shrink:0;
-  border-bottom:1px solid var(--border);
-}
-.progress-info{
-  display:flex;justify-content:space-between;
-  font-size:11px;color:var(--muted);margin-bottom:5px;
-}
-.progress-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
-.progress-fill{
-  height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-lt));
-  border-radius:2px;transition:width 0.3s;
-}
-
-.dots-wrap{
-  display:flex;gap:4px;flex-wrap:wrap;
-  padding:8px 14px;
-  background:var(--surface);flex-shrink:0;
-}
-.dot{
-  width:22px;height:22px;border-radius:6px;
-  border:1.5px solid var(--border);background:var(--card);
-  font-size:9px;font-weight:700;color:var(--muted);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all 0.15s;
-  font-family:'Syne',sans-serif;
-}
-.dot:hover{border-color:var(--gold);color:var(--gold);}
-.dot.current{border-color:var(--gold);background:var(--gold);color:#080E1A;}
-.dot.answered{border-color:var(--green);background:#05200F;color:var(--green);}
-.dot.answered.current{background:var(--green);color:#080E1A;}
-
-.question-area{
-  flex:1;overflow:hidden;
-  display:flex;flex-direction:column;
-  padding:14px 16px 0;
-}
-.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.q-number{font-size:11px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
-.q-marks{font-size:10px;color:var(--muted);}
-
-.q-text{
-  font-family:'Syne',sans-serif;font-weight:600;
-  font-size:15px;line-height:1.45;color:var(--text);
-  margin-bottom:14px;flex-shrink:0;
-}
-
-.options{display:flex;flex-direction:column;gap:8px;flex:1;overflow-y:auto;padding-bottom:4px;}
-.option{
-  display:flex;align-items:center;gap:12px;
-  background:var(--card);border:1.5px solid var(--border);
-  border-radius:10px;padding:11px 13px;
-  cursor:pointer;transition:all 0.15s;flex-shrink:0;
-}
-.option:hover{border-color:var(--gold-dim);}
-.option.selected{border-color:var(--gold);}
-.option.selected .opt-letter{background:var(--gold);color:#080E1A;border-color:var(--gold);}
-.opt-letter{
-  width:27px;height:27px;border-radius:7px;
-  background:var(--surface);border:1px solid var(--border);
-  font-family:'Syne',sans-serif;font-weight:700;font-size:11px;
-  color:var(--muted);display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:all 0.15s;
-}
-.opt-text{font-size:13.5px;line-height:1.35;}
-
-.quiz-bottom{
-  padding:9px 14px 13px;
-  display:flex;gap:7px;
-  background:var(--surface);border-top:1px solid var(--border);
-  flex-shrink:0;
-}
-.btn-nav{
-  flex:1;padding:11px 4px;
-  border-radius:9px;border:1.5px solid var(--border);
-  background:var(--card);color:var(--text);
-  font-family:'Syne',sans-serif;font-weight:700;font-size:12px;
-  cursor:pointer;transition:all 0.15s;
-}
-.btn-nav:hover{border-color:var(--gold-dim);}
-.btn-nav:disabled{opacity:0.3;cursor:not-allowed;}
-.btn-clear{
-  flex:1;padding:11px 4px;
-  border-radius:9px;border:1.5px solid var(--border);
-  background:var(--card);color:var(--red);
-  font-family:'Syne',sans-serif;font-weight:700;font-size:12px;
-  cursor:pointer;transition:all 0.15s;
-}
-.btn-clear:hover{border-color:var(--red);}
-.btn-submit{
-  flex:2;padding:11px 4px;
-  border-radius:9px;border:none;
-  background:linear-gradient(135deg,var(--gold),#a07828);
-  color:#080E1A;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;
-  cursor:pointer;transition:opacity 0.15s;
-}
-.btn-submit:hover{opacity:0.9;}
-
-/* ══════════════════════════════════════════
-   RESULT SCREEN
-══════════════════════════════════════════ */
-#resultScreen{
-  overflow-y:auto;padding:18px 16px 28px;gap:14px;
-  background:var(--bg);
-}
-[data-theme="dark"] #resultScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a10 0%,var(--bg) 65%);
-}
-
-.result-topbar{display:flex;justify-content:space-between;align-items:center;}
-.result-topbar h2{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--gold-lt);}
-
-.score-row{display:flex;align-items:center;justify-content:center;gap:20px;}
-.score-circle{
-  width:100px;height:100px;border-radius:50%;
-  border:3.5px solid var(--gold);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--card);flex-shrink:0;
-}
-.score-num{font-family:'Oswald',sans-serif;font-weight:600;font-size:28px;color:var(--gold-lt);}
-.score-denom{font-size:10px;color:var(--muted);}
-.score-info{display:flex;flex-direction:column;gap:4px;}
-.score-info .si-row{font-size:12px;color:var(--muted);}
-.score-info .si-row span{font-weight:700;}
-.score-info .si-row span.g{color:var(--green);}
-.score-info .si-row span.r{color:var(--red);}
-.score-info .si-row span.y{color:#F59E0B;}
-
-.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.stat-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:10px;padding:11px 8px;text-align:center;
-}
-.stat-card .val{font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;}
-.stat-card .lbl{font-size:10px;color:var(--muted);margin-top:2px;}
-.stat-card.correct .val{color:var(--green);}
-.stat-card.wrong   .val{color:var(--red);}
-.stat-card.skip    .val{color:#F59E0B;}
-
-.wrong-section h3{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:12px;
-  color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;
-}
-.wrong-card{
-  background:var(--card);border:1px solid var(--border);
-  border-left:3px solid var(--red);border-radius:10px;
-  padding:11px 13px;margin-bottom:8px;
-}
-.wrong-card .wq-num{font-size:10px;color:var(--red);font-weight:700;margin-bottom:3px;}
-.wrong-card .wq-text{font-size:13px;font-weight:500;margin-bottom:7px;line-height:1.4;}
-.your-ans{font-size:11px;color:var(--red);}
-.corr-ans{font-size:11px;color:var(--green);font-weight:600;}
-
-.btn-retry{
-  width:100%;padding:13px;
-  background:linear-gradient(135deg,var(--gold),#a07828);
-  color:#080E1A;border:none;border-radius:10px;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:14px;
-  cursor:pointer;
-}
-.btn-new{
-  width:100%;padding:11px;
-  background:var(--card);color:var(--text);
-  border:1.5px solid var(--border);border-radius:10px;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:13px;
-  cursor:pointer;margin-top:8px;
-}
-
-::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-
-/* ══════════════════════════════════════════
-   MODE SELECT SCREEN
-══════════════════════════════════════════ */
-#modeScreen{
-  align-items:center;justify-content:flex-start;
-  overflow-y:auto;padding:20px 20px 24px;
-  background:var(--bg);
-}
-[data-theme="dark"] #modeScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a40 0%,var(--bg) 65%);
-}
-.mode-topbar{
-  width:100%;max-width:440px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:6px;
-}
-.mode-topbar h2{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);}
-.mode-sub{font-size:11px;color:var(--muted);margin-bottom:20px;width:100%;max-width:440px;}
-
-.mode-card{
-  width:100%;max-width:440px;
-  background:var(--card);border:1.5px solid var(--border);
-  border-radius:var(--radius);padding:16px 18px;
-  cursor:pointer;transition:all 0.2s;
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:10px;
-}
-.mode-card:hover{border-color:var(--gold);transform:translateY(-1px);}
-.mode-card.selected{border-color:var(--gold);background:#111E10;}
-.mode-card .mc-icon{font-size:26px;flex-shrink:0;}
-.mode-card .mc-title{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;margin-bottom:3px;}
-.mode-card .mc-sub{font-size:11px;color:var(--muted);line-height:1.4;}
-
-/* ══════════════════════════════════════════
-   EXAM CONFIG SCREEN
-══════════════════════════════════════════ */
-#configScreen{
-  align-items:center;justify-content:flex-start;
-  overflow-y:auto;padding:20px 20px 24px;
-  background:var(--bg);
-}
-[data-theme="dark"] #configScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a40 0%,var(--bg) 65%);
-}
-.config-topbar{
-  width:100%;max-width:440px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:20px;
-}
-.config-topbar h2{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);}
-
-.exam-card{
-  width:100%;max-width:440px;
-  background:var(--card);border:1.5px solid var(--border);
-  border-radius:var(--radius);padding:15px 18px;
-  cursor:pointer;transition:all 0.2s;margin-bottom:10px;
-}
-.exam-card:hover{border-color:var(--gold);}
-.exam-card.selected{border-color:var(--gold);background:#111E10;}
-.exam-card .ec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--gold-lt);margin-bottom:6px;}
-.exam-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
-.chip{
-  font-size:10px;padding:3px 8px;border-radius:20px;
-  background:var(--surface);border:1px solid var(--border);color:var(--muted);
-}
-.chip.g{border-color:#1A5C2A;background:#0A2010;color:var(--green);}
-.chip.r{border-color:#5C1A1A;background:#200A0A;color:var(--red);}
-.chip.b{border-color:#1A3A5C;background:#0A1820;color:#60A0F0;}
-
-.info-box{
-  width:100%;max-width:440px;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:14px 16px;margin-bottom:14px;
-  display:none;
-}
-.info-box.show{display:block;}
-.info-box .ib-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--gold-lt);margin-bottom:10px;}
-.info-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;}
-.info-row:last-child{border-bottom:none;}
-.info-row .ir-l{color:var(--muted);}
-.info-row .ir-v{font-weight:700;font-family:'Syne',sans-serif;font-size:12px;}
-.info-row .ir-v.g{color:var(--green);}
-.info-row .ir-v.r{color:var(--red);}
-
-/* ══════════════════════════════════════════
-   ROUND TRANSITION SCREEN
-══════════════════════════════════════════ */
-#roundScreen{
-  align-items:center;justify-content:center;
-  background:var(--bg);gap:18px;padding:30px 20px;
-}
-[data-theme="dark"] #roundScreen{
-  background:radial-gradient(ellipse at 50% 0%,#1a2a40 0%,var(--bg) 65%);
-}
-.round-badge{
-  width:80px;height:80px;border-radius:50%;
-  border:3px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  background:var(--card);font-size:32px;
-}
-.round-title{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--gold-lt);text-align:center;}
-.round-sub{font-size:12px;color:var(--muted);text-align:center;line-height:1.5;}
-.round-info-box{
-  width:100%;max-width:380px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);padding:14px 18px;
-}
-
-/* ══════════════════════════════════════════
-   SECTION BAR (quiz screen)
-══════════════════════════════════════════ */
-.section-bar{
-  display:none;flex-wrap:nowrap;gap:6px;
-  padding:6px 14px;background:var(--surface);
-  border-bottom:1px solid var(--border);flex-shrink:0;
-  overflow-x:auto;
-}
-.section-bar.show{display:flex;}
-.sec-chip{
-  font-size:10px;padding:3px 10px;border-radius:20px;
-  border:1px solid var(--border);background:var(--card);
-  color:var(--muted);white-space:nowrap;font-weight:600;flex-shrink:0;
-}
-.sec-chip.active-sec{border-color:var(--gold);color:var(--gold);background:#1A1400;}
-
-/* section label tag on question */
-.q-section-tag{
-  font-size:9px;padding:2px 8px;border-radius:10px;
-  background:var(--surface);border:1px solid var(--border);
-  color:var(--muted);font-weight:600;text-transform:capitalize;
-  display:none;
-}
-.q-section-tag.show{display:inline-block;}
 </style>
 </head>
 <body>
-
-<!-- ══ UPLOAD SCREEN ══ -->
-<div id="uploadScreen" class="screen active">
-  <div class="upload-topbar">
-    <div>
-      <div class="logo">Quiz<span>Forge</span></div>
-      <div class="tagline">UPSC Practice Engine</div>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
-  </div>
-
-  <!-- Tab switcher -->
-  <div class="tab-row">
-    <button class="tab-btn active" id="tabFile" onclick="switchTab('file')">📂 File Upload</button>
-    <button class="tab-btn" id="tabPaste" onclick="switchTab('paste')">📋 Paste JSON</button>
-  </div>
-
-  <!-- File tab -->
-  <div id="fileTab">
-    <div class="upload-box" id="dropZone" onclick="document.getElementById('fileInput').click()">
-      <div class="upload-icon">📂</div>
-      <h3>Load Questions</h3>
-      <p>Drop a JSON or CSV file here<br/>or tap to browse</p>
-    </div>
-    <input type="file" id="fileInput" accept=".json,.csv"/>
-  </div>
-
-  <!-- Paste tab -->
-  <div id="pasteTab" style="display:none;width:100%;max-width:440px;">
-    <div class="paste-wrap">
-      <label>Paste JSON content below</label>
-      <textarea id="jsonPaste" placeholder='[
-  {
-    "q": "Your question here?",
-    "o": ["Option A", "Option B", "Option C", "Option D"],
-    "a": "QQ=="
-  }
-]
-
-Tip: "a" is Base64 encoded answer.
-A=QQ== B=Qg== C=Qw== D=RA=='></textarea>
-      <div class="paste-actions">
-        <button class="btn-sm" onclick="clearPaste()">🗑 Clear</button>
-        <button class="btn-sm gold" onclick="loadFromPaste()">✓ Load</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="format-hint">
-    <h4>Answer Encoding (Base64)</h4>
-    <code>A → QQ==    B → Qg==    C → Qw==    D → RA==</code>
-  </div>
-
-  <div id="uploadStatus"></div>
-  <div id="uploadError"></div>
-  <button class="btn-primary" id="startBtn" disabled onclick="goToMode()">Select Exam Mode →</button>
-</div>
-
-<!-- ══ MODE SELECT SCREEN ══ -->
-<div id="modeScreen" class="screen">
-  <div class="mode-topbar">
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);">Select Mode</div>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-  </div>
-  <div class="mode-sub" id="modeSub">Choose what you want to practise</div>
-
-  <div class="mode-card" id="mode-mock" onclick="pickMode('mock')">
-    <div class="mc-icon">🎯</div>
-    <div>
-      <div class="mc-title">Mock / Custom</div>
-      <div class="mc-sub">Any questions · custom marks & timer</div>
-    </div>
-  </div>
-  <div class="mode-card" id="mode-tier1" onclick="pickMode('tier1')">
-    <div class="mc-icon">📝</div>
-    <div>
-      <div class="mc-title">Tier 1 / CBT 1</div>
-      <div class="mc-sub">SSC CGL Tier 1 · RRB NTPC CBT 1</div>
-    </div>
-  </div>
-  <div class="mode-card" id="mode-tier2" onclick="pickMode('tier2')">
-    <div class="mc-icon">🏆</div>
-    <div>
-      <div class="mc-title">Tier 2 / CBT 2</div>
-      <div class="mc-sub">SSC CGL Tier 2 (2 rounds) · RRB NTPC CBT 2</div>
-    </div>
-  </div>
-
-  <button class="btn-primary" id="modeNextBtn" disabled onclick="goToConfig()" style="max-width:440px;margin-top:6px;">Configure Exam →</button>
-  <button class="btn-new" onclick="showScreen('uploadScreen')" style="max-width:440px;margin-top:8px;">← Back</button>
-</div>
-
-<!-- ══ EXAM CONFIG SCREEN ══ -->
-<div id="configScreen" class="screen">
-  <div class="config-topbar">
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);" id="configTitle">Configure Exam</div>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-  </div>
-  <div id="configBody" style="width:100%;max-width:440px;display:flex;flex-direction:column;gap:0;"></div>
-</div>
-
-<!-- ══ ROUND TRANSITION SCREEN ══ -->
-<div id="roundScreen" class="screen">
-  <div class="round-badge">📝</div>
-  <div class="round-title">Round 1 Complete!</div>
-  <div class="round-sub" id="roundSub">Get ready for Round 2</div>
-  <div class="round-info-box" id="roundInfoBox"></div>
-  <button class="btn-primary" style="max-width:380px;" onclick="startRound2()">Start Round 2 →</button>
-</div>
-
-<!-- ══ MARKS SETUP SCREEN ══ -->
-<div id="marksScreen" class="screen">
-  <div class="marks-topbar">
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt)">Marking Scheme</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="marksSubtitle"></div>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-  </div>
-
-  <div class="section-label">Quick Presets</div>
-  <div class="preset-row">
-    <div class="preset-card" id="preset-ssc" onclick="applyPreset('ssc')">
-      <div class="pc-name">SSC CGL</div>
-      <div class="pc-detail">+2 correct<br/>−0.5 wrong</div>
-    </div>
-    <div class="preset-card" id="preset-rrb" onclick="applyPreset('rrb')">
-      <div class="pc-name">RRB NTPC</div>
-      <div class="pc-detail">+1 correct<br/>−0.33 wrong</div>
-    </div>
-    <div class="preset-card active" id="preset-custom" onclick="applyPreset('custom')">
-      <div class="pc-name">Custom</div>
-      <div class="pc-detail">Set your<br/>own marks</div>
-    </div>
-  </div>
-
-  <div class="section-label">Marks Per Question</div>
-  <div class="marks-row">
-    <div class="marks-field">
-      <label>✅ Correct answer</label>
-      <input type="number" id="marksCorrect" value="1" min="0.5" step="0.5"/>
-    </div>
-    <div class="marks-field">
-      <label>Total marks</label>
-      <input type="number" id="totalMarks" value="20" readonly style="opacity:0.6;cursor:not-allowed;"/>
-    </div>
-  </div>
-
-  <div class="neg-row">
-    <div>
-      <div class="neg-label">Negative Marking</div>
-      <div class="neg-sub">Deduct marks for wrong answers</div>
-    </div>
-    <label class="toggle">
-      <input type="checkbox" id="negToggle" onchange="toggleNeg()"/>
-      <span class="toggle-slider"></span>
-    </label>
-  </div>
-
-  <div class="neg-fields" id="negFields">
-    <label>❌ Marks deducted per wrong answer</label>
-    <input type="number" id="marksWrong" value="0.33" min="0" step="0.01"/>
-    <div class="neg-preview" id="negPreview"></div>
-  </div>
-
-  <button class="btn-primary" onclick="startQuiz()" style="margin-top:8px;">Start Test →</button>
-  <button class="btn-new" onclick="showScreen('uploadScreen')" style="margin-top:8px;">← Back</button>
-</div>
-
-<!-- ══ QUIZ SCREEN ══ -->
-<div id="quizScreen" class="screen">
-  <div class="quiz-topbar">
-    <div class="quiz-title">QuizForge</div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-      <div class="timer-wrap">
-        <span class="timer-icon">⏱</span>
-        <div id="timerDisplay">9:00</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="progress-bar-wrap">
-    <div class="progress-info">
-      <span id="progressText">Q 1 of 20</span>
-      <span id="answeredCount">0 answered</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill" style="width:0%"></div>
-    </div>
-  </div>
-
-  <div class="dots-wrap" id="dotsWrap"></div>
-  <div class="section-bar" id="sectionBar"></div>
-
-  <div class="question-area">
-    <div class="q-meta">
-      <div class="q-number" id="qNumber">Question 1</div>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <span class="q-section-tag" id="qSecTag"></span>
-        <div class="q-marks" id="qMarksInfo"></div>
-      </div>
-    </div>
-    <div class="q-text" id="qText"></div>
-    <div class="options" id="optionsWrap"></div>
-  </div>
-
-  <div class="quiz-bottom">
-    <button class="btn-nav" id="prevBtn" onclick="navigate(-1)">← Prev</button>
-    <button class="btn-clear" onclick="clearSelection()">✕ Clear</button>
-    <button class="btn-submit" onclick="confirmSubmit()">Submit</button>
-    <button class="btn-nav" id="nextBtn" onclick="navigate(1)">Next →</button>
-  </div>
-</div>
-
-<!-- ══ RESULT SCREEN ══ -->
-<div id="resultScreen" class="screen">
-  <div class="result-topbar">
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--gold-lt);" id="resultTitle">Result</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="resultSubtitle"></div>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()">☀️</button>
-  </div>
-
-  <div class="score-row">
-    <div class="score-circle">
-      <div class="score-num" id="scoreNum">0</div>
-      <div class="score-denom" id="scoreDenom">/ 20</div>
-    </div>
-    <div class="score-info" id="scoreInfo"></div>
-  </div>
-
-  <div class="stat-row">
-    <div class="stat-card correct"><div class="val" id="statCorrect">0</div><div class="lbl">Correct</div></div>
-    <div class="stat-card wrong">  <div class="val" id="statWrong">0</div>  <div class="lbl">Wrong</div></div>
-    <div class="stat-card skip">   <div class="val" id="statSkip">0</div>   <div class="lbl">Skipped</div></div>
-  </div>
-
-  <div class="wrong-section">
-    <h3>❌ Wrong / Skipped Answers</h3>
-    <div id="wrongList"></div>
-  </div>
-
-  <button class="btn-retry" onclick="retryQuiz()">🔁 Retry Same Questions</button>
-  <button class="btn-new"   onclick="newQuiz()">📂 Load New Questions</button>
-</div>
-
+<section id="uploadScreen" class="screen active">
+<header class="header"><div><div class="brand">QuizForge</div><small>Competitive exam practice</small></div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header>
+<main class="shell"><div class="intro"><h1>Load questions</h1><p>Upload your question bank or paste JSON to start a practice test.</p></div><div class="panel">
+<div class="tabs"><button id="tabFile" class="tab active" onclick="switchTab('file')">File upload</button><button id="tabPaste" class="tab" onclick="switchTab('paste')">Paste JSON</button></div>
+<div id="fileTab"><div id="dropZone" class="drop" role="button" tabindex="0" aria-label="Browse JSON or CSV file"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 16v-5m-2 2 2-2 2 2"/></svg><strong>Choose a question file</strong><p>Drag and drop or click to browse<br>JSON or CSV</p></div><input id="fileInput" type="file" accept=".json,.csv,application/json,text/csv" hidden></div>
+<div id="pasteTab" hidden><label class="field-label" for="jsonPaste">JSON content</label><textarea id="jsonPaste" spellcheck="false" placeholder='[{"q":"Question?","o":["A","B","C","D"],"a":"QQ=="}]'></textarea><div class="actions"><button class="btn" onclick="clearPaste()">Clear</button><button class="btn primary" onclick="loadFromPaste()">Load JSON</button></div></div>
+<div class="format"><strong>Answer encoding (Base64)</strong><code>A = QQ== &nbsp; B = Qg== &nbsp; C = Qw== &nbsp; D = RA==</code></div>
+<div id="uploadStatus" class="message" role="status" hidden></div><div id="uploadError" class="message error" role="alert" hidden></div><div class="actions"><button id="startBtn" class="btn primary" disabled onclick="goToMode()">Select exam mode →</button><button class="btn" onclick="openHistory()">Test history</button></div><p id="storageNote" class="storage-note">Attempts and history are stored in this browser on this device.</p></div></main></section>
+<section id="modeScreen" class="screen"><header class="header"><div class="brand">QuizForge</div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header><main class="shell"><div class="intro"><h1>Select exam mode</h1><p id="modeSub"></p></div><div class="panel"><div class="choices" id="modeChoices"></div><div class="actions"><button class="btn" onclick="showScreen('uploadScreen')">← Back</button><button class="btn primary" id="modeNextBtn" disabled onclick="goToConfig()">Configure exam →</button></div></div></main></section>
+<section id="configScreen" class="screen"><header class="header"><div class="brand">QuizForge</div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header><main class="shell"><div class="intro"><h1 id="configTitle">Configure exam</h1><p id="configSub"></p></div><div class="panel" id="configBody"></div></main></section>
+<section id="roundScreen" class="screen"><header class="header"><div class="brand">QuizForge</div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header><main class="shell"><div class="intro"><h1>Round 1 complete</h1><p>Your first round has been submitted.</p></div><div class="panel"><h2>Round 2 — English and GS</h2><div class="info-table" id="roundInfo"></div><button class="btn primary" style="width:100%" onclick="startRound2()">Start round 2 →</button></div></main></section>
+<section id="quizScreen" class="screen"><header class="header exam-header"><div><div class="brand">QuizForge</div><small id="examTitle">Mock test</small></div><div class="header-actions"><button class="theme-btn" onclick="toggleTheme()">Dark theme</button><button id="pauseBtn" class="head-btn" onclick="pauseQuiz()">Ⅱ Pause</button><div class="timer"><span class="timer-label">Time left</span><span id="timerDisplay">60:00</span></div></div></header>
+<div id="sectionBar" class="section-bar" hidden></div>
+<div class="exam-layout" id="examLayout"><main class="exam-main"><div class="q-meta"><strong id="qNumber">Question No. 1</strong><span id="qMarksInfo" class="marks"></span></div><div class="question-scroll" id="questionScroll"><div id="qText" class="q-text"></div><div class="options" id="optionsWrap" role="group" aria-label="Answer options"></div></div><footer class="exam-footer"><button class="btn" id="prevBtn" onclick="navigate(-1)">← Previous</button><button class="btn danger" onclick="clearSelection()">Clear response</button><button id="reviewBtn" class="btn review-btn" aria-pressed="false" onclick="toggleReview()">Mark for review</button><button class="btn primary" onclick="confirmSubmit()">Submit test</button><button class="btn" id="nextBtn" onclick="navigate(1)">Next →</button></footer></main><aside class="sidebar" aria-label="Question navigation"><div class="side-summary"><h2>Test progress</h2><span id="progressText" class="muted"></span><div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div><div class="legend"><span><i class="answered-key"></i><span id="answeredCount">0 answered</span></span><span><i></i><span id="unansweredCount">0 unanswered</span></span><span><i class="review-key"></i><span id="reviewCount">0 for review</span></span><span><i class="current-key"></i>Current</span></div></div><div class="palette-head">Question palette</div><div class="palette" id="dotsWrap"></div></aside></div></section>
+<div id="pauseOverlay" class="pause-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><div class="pause-card"><h2 id="pauseTitle">Test paused</h2><p>Your timer is stopped. Answers, review flags and time are saved locally when browser storage is available.</p><button class="btn primary" id="resumeBtn" onclick="resumeQuiz()">Resume test</button></div></div>
+<section id="resultScreen" class="screen"><header class="header"><div><div class="brand">QuizForge</div><small>Test analytics</small></div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header><main class="report-shell"><div class="report-heading"><div><h1>Test report</h1><p id="resultSubtitle"></p></div><button id="pdfBtn" class="btn primary" onclick="downloadReport()">↓ Download PDF report</button></div><div id="pdfError" class="message error" role="alert" hidden></div><div class="report-summary"><div class="score-block"><div><div class="score-label">Scored marks</div><div class="score-value"><span id="scoreNum">0</span> <small>/ <span id="scoreDenom">100</span></small></div></div><div class="report-meta" id="scoreInfo"></div></div><div class="stats"><div class="stat correct"><strong id="statCorrect">0</strong><span>Correct</span></div><div class="stat wrong"><strong id="statWrong">0</strong><span>Wrong</span></div><div class="stat"><strong id="statSkip">0</strong><span>Not attempted</span></div></div><div class="distribution" id="distribution" aria-hidden="true"><span></span><span></span><span></span></div><div id="roundDetails" class="round-details" hidden></div></div><div class="actions"><button class="btn primary" onclick="retryQuiz()">Retry same questions</button><button id="retryWrongBtn" class="btn" onclick="retryWrong()">Retry wrong questions only</button><button class="btn" onclick="openHistory()">Test history</button><button class="btn" onclick="newQuiz()">Load new questions</button></div><div class="review"><div class="review-heading"><h2>Subject-wise performance</h2></div><div class="panel report-table-wrap" id="subjectStats"></div></div><div class="review"><details class="panel time-details"><summary>Time spent per question</summary><p class="timing-note" id="timeSummary"></p><div class="report-table-wrap" id="timeStats"></div></details></div><div class="review"><div class="review-heading"><h2>Wrong questions</h2><span id="wrongCount" class="muted"></span></div><div id="wrongList"></div></div><div class="review"><div class="review-heading"><h2>Skipped questions</h2><span id="skipCount" class="muted"></span></div><div id="skipList"></div></div></main></section>
+<section id="historyScreen" class="screen"><header class="header"><div class="brand">QuizForge</div><button class="theme-btn" onclick="toggleTheme()">Dark theme</button></header><main class="report-shell"><div class="report-heading"><div><h1>Test history</h1><p>Completed attempts saved in this browser.</p></div><button class="btn" onclick="closeHistory()">← Back</button></div><div class="panel report-table-wrap" id="historyTable"></div><p class="storage-note">History is local to this browser and website address; clearing browser data removes it. Download PDF reports to keep permanent copies.</p></main></section>
 <script>
-// ── State ──────────────────────────────────────────────────────────────────
-let allQuestions = [];   // everything loaded
-let questions    = [];   // active round questions
-let answers      = {};
-let currentQ     = 0;
-let timerInt     = null;
-let timeLeft     = 9 * 60;
-let markCorrect  = 1;
-let markWrong    = 0;
-let negEnabled   = false;
-let selectedMode = null;
-let selectedExam = null;
-let examLabel    = '';
-
-// Tier 2 two-round support
-let round1Answers   = {};
-let round1Done      = false;
-let round2Questions = [];
-let round1MarkC = 3, round1MarkW = 1;
-let round2MarkC = 3, round2MarkW = 1;
-
-// Exam definitions
-const EXAM_DEFS = {
-  ssc_tier1: {
-    label:'SSC CGL Tier 1', rounds:1,
-    total:100, time:60, markC:2, markW:0.5,
-    sections:{math:25,reasoning:25,english:25,gs:25},
-    info:[['Questions','100'],['Time','60 mins'],['Correct','+2'],['Wrong','−0.5'],['Sections','Maths(25) Reasoning(25) English(25) GS(25)']]
-  },
-  rrb_cbt1: {
-    label:'RRB NTPC CBT 1', rounds:1,
-    total:100, time:90, markC:1, markW:0.33,
-    sections:{math:30,reasoning:30,gs:40},
-    info:[['Questions','100'],['Time','90 mins'],['Correct','+1'],['Wrong','−0.33'],['Sections','Maths(30) Reasoning(30) GS(40)']]
-  },
-  ssc_tier2: {
-    label:'SSC CGL Tier 2', rounds:2,
-    round1:{label:'Round 1 — Maths + Reasoning', total:60, time:60, markC:3, markW:1, sections:{math:30,reasoning:30}},
-    round2:{label:'Round 2 — English + GS',       total:70, time:60, markC:3, markW:1, sections:{english:45,gs:25}},
-    info:[['Round 1','Maths(30)+Reasoning(30) · 60 mins'],['Round 2','English(45)+GS(25) · 60 mins'],['Correct','+3'],['Wrong','−1'],['Sectional Time','Yes (per round)']]
-  },
-  rrb_cbt2: {
-    label:'RRB NTPC CBT 2', rounds:1,
-    total:120, time:90, markC:1, markW:0.33,
-    sections:{math:35,reasoning:35,gs:50},
-    info:[['Questions','120'],['Time','90 mins'],['Correct','+1'],['Wrong','−0.33'],['Sections','Maths(35) Reasoning(35) GS(50)']]
-  },
-};
-function secName(s){return {math:'Maths',reasoning:'Reasoning',english:'English',gs:'GS'}[s]||s;}
-
-// ── Theme ──────────────────────────────────────────────────────────────────
-let isDark = true;
-function toggleTheme() {
-  isDark = !isDark;
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.querySelectorAll('.theme-btn').forEach(b => b.textContent = isDark ? '☀️' : '🌙');
+'use strict';
+const $=id=>document.getElementById(id), letters=['A','B','C','D'];
+let allQuestions=[],selectedMode=null,selectedExam=null,plan=null,roundIndex=0,completed=[],questions=[],answers={},currentQ=0,remainingMs=0,deadline=0,timerInt=null,paused=false,active=false,lastReport=null,loadVersion=0;
+const modes=[['mock','Mock / Custom','Any number of questions · custom marks and timer'],['tier1','Tier 1 / CBT 1','SSC CGL Tier 1 · RRB NTPC CBT 1'],['tier2','Tier 2 / CBT 2','SSC CGL Tier 2 (2 rounds) · RRB NTPC CBT 2'],['mpsc','MPSC Group C Pre Exam','100 questions · 60 minutes · +1 / −0.25']];
+const EXAMS={ssc_tier1:{label:'SSC CGL Tier 1',total:100,time:60,markC:2,markW:.5,sections:{math:25,reasoning:25,english:25,gs:25}},rrb_cbt1:{label:'RRB NTPC CBT 1',total:100,time:90,markC:1,markW:.33,sections:{math:30,reasoning:30,gs:40}},rrb_cbt2:{label:'RRB NTPC CBT 2',total:120,time:90,markC:1,markW:.33,sections:{math:35,reasoning:35,gs:50}},ssc_tier2:{label:'SSC CGL Tier 2',rounds:[{label:'Round 1 — Maths + Reasoning',total:60,time:60,markC:3,markW:1,sections:{math:30,reasoning:30}},{label:'Round 2 — English + GS',total:70,time:60,markC:3,markW:1,sections:{english:45,gs:25}}]},mpsc:{label:'MPSC Group C Pre Exam',total:100,time:60,markC:1,markW:.25,sections:{}}};
+const secName=s=>({math:'Maths',reasoning:'Reasoning',english:'English',gs:'General Studies'}[s]||s), fmt=n=>String(Math.round((n+Number.EPSILON)*100)/100);
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));$(id).scrollTop=0;window.scrollTo(0,0);}
+function toggleTheme(){const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';document.querySelectorAll('.theme-btn').forEach(b=>{b.textContent=dark?'Light theme':'Dark theme';b.setAttribute('aria-label',b.textContent);});}
+function switchTab(tab){$('fileTab').hidden=tab!=='file';$('pasteTab').hidden=tab!=='paste';$('tabFile').classList.toggle('active',tab==='file');$('tabPaste').classList.toggle('active',tab==='paste');}
+function message(id,text){$(id).textContent=text;$(id).hidden=!text;}
+function clearMessages(){message('uploadStatus','');message('uploadError','');}
+function clearPaste(){++loadVersion;$('jsonPaste').value='';clearMessages();allQuestions=[];$('startBtn').disabled=true;}
+const drop=$('dropZone'),file=$('fileInput');drop.onclick=()=>file.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();file.click();}};drop.ondragover=e=>{e.preventDefault();drop.classList.add('drag');};drop.ondragleave=()=>drop.classList.remove('drag');drop.ondrop=e=>{e.preventDefault();drop.classList.remove('drag');handleFile(e.dataTransfer.files[0]);};file.onchange=e=>{handleFile(e.target.files[0]);file.value='';};
+async function handleFile(f){if(!f)return;const token=++loadVersion;clearMessages();$('startBtn').disabled=true;try{const text=await f.text();if(token===loadVersion)processText(text,f.name.split('.').pop().toLowerCase());}catch(e){if(token===loadVersion){allQuestions=[];message('uploadError','Could not read this file.');}}}
+function loadFromPaste(){++loadVersion;processText($('jsonPaste').value,'json');}
+function decodeAns(v){const raw=String(v).trim();if(/^[A-D]$/i.test(raw))return raw.toUpperCase();try{const d=atob(raw).trim().toUpperCase();return /^[A-D]$/.test(d)?d:'';}catch{return '';}}
+function parseCSV(text){const rows=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'&&text[i+1]==='"'){field+='"';i++;}else if(c==='"')quoted=false;else field+=c;}else if(c==='"'&&field.trim()===''){field='';quoted=true;}else if(c===','){row.push(field.trim());field='';}else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field.trim());if(row.some(Boolean))rows.push(row);row=[];field='';}else field+=c;}if(quoted)throw Error('CSV contains an unclosed quoted field.');row.push(field.trim());if(row.some(Boolean))rows.push(row);let start=0;if(rows.length&&/^(q|question|question text)$/i.test(rows[0][0]))start=1;return rows.slice(start).map((r,i)=>{if(r.length<6)throw Error(`CSV row ${i+start+1}: expected question, four options and answer.`);return {q:r[0],o:r.slice(1,5),a:r[5],...(r[6]?{section:r[6]}:{})};});}
+function validate(qs){if(!Array.isArray(qs)||!qs.length)throw Error('No questions found. Expected a JSON array.');return qs.map((q,i)=>{const prefix=`Question ${i+1}: `;if(!q||typeof q.q!=='string'||!q.q.trim())throw Error(prefix+'missing question text (q).');if(!Array.isArray(q.o)||q.o.length!==4||q.o.some(x=>x===null||x===undefined||String(x).trim()===''))throw Error(prefix+'exactly four non-empty options (o) required.');const a=decodeAns(q.a??'');if(!a)throw Error(prefix+'invalid answer (a). Use A–D or the matching Base64 value.');return {q:q.q,o:q.o.map(String),a,section:String(q.section??'').trim().toLowerCase()};});}
+function processText(text,ext){clearMessages();try{text=text.replace(/^\uFEFF/,'');if(!text.trim())throw Error('Please supply questions first.');if(ext!=='json'&&ext!=='csv')throw Error('Only JSON and CSV files are supported.');allQuestions=validate(ext==='json'?JSON.parse(text):parseCSV(text));$('startBtn').disabled=false;message('uploadStatus',`${allQuestions.length} questions loaded successfully.`);}catch(e){allQuestions=[];$('startBtn').disabled=true;message('uploadError',e.message);}}
+function makeChoice(key,title,desc,click){const b=el('button','choice');b.type='button';b.dataset.key=key;b.setAttribute('aria-pressed','false');b.append(el('span','choice-mark'));const text=el('span');text.append(el('strong','',title),el('small','',desc));b.append(text);b.onclick=click;return b;}
+function selectChoice(container,key){container.querySelectorAll('.choice').forEach(b=>{const on=b.dataset.key===key;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on));});}
+function goToMode(){selectedMode=null;selectedExam=null;$('modeSub').textContent=`${allQuestions.length} questions loaded. Choose your test pattern.`;const wrap=$('modeChoices');wrap.replaceChildren();modes.forEach(([k,t,d])=>wrap.append(makeChoice(k,t,d,()=>{selectedMode=k;selectChoice(wrap,k);$('modeNextBtn').disabled=false;})));$('modeNextBtn').disabled=true;showScreen('modeScreen');}
+function addInfo(container,pairs){container.replaceChildren();for(const [k,v] of pairs){const r=el('div','info-row');r.append(el('span','muted',k),el('strong','',v));container.append(r);}}
+function goToConfig(){if(!selectedMode)return;selectedExam=null;const body=$('configBody');body.replaceChildren();$('configTitle').textContent=selectedMode==='mock'?'Configure mock test':modes.find(m=>m[0]===selectedMode)[1];$('configSub').textContent=`${allQuestions.length} questions available in your question bank.`;if(selectedMode==='mock'){buildMockConfig(body);}else{const keys=selectedMode==='tier1'?['ssc_tier1','rrb_cbt1']:selectedMode==='tier2'?['ssc_tier2','rrb_cbt2']:['mpsc'];const wrap=el('div','choices'),info=el('div','info-table');info.hidden=true;const err=el('div','message error');err.setAttribute('role','alert');err.hidden=true;const actions=el('div','actions'),back=el('button','btn','← Back'),start=el('button','btn primary','Start exam →');back.onclick=()=>showScreen('modeScreen');start.disabled=true;start.onclick=()=>{try{launchExam();}catch(e){err.hidden=false;err.textContent=e.message;}};actions.append(back,start);function pick(k){selectedExam=k;selectChoice(wrap,k);const d=EXAMS[k];const pairs=d.rounds?d.rounds.map(r=>[r.label,`${r.total} questions · ${r.time} min · +${r.markC} / −${r.markW}`]):[['Questions',String(d.total)],['Duration',`${d.time} minutes`],['Correct answer',`+${d.markC}`],['Wrong answer',`−${d.markW}`],['Skipped','0']];if(k==='mpsc'&&allQuestions.length>100)pairs.push(['Question selection','First 100 loaded questions']);if(k!=='mpsc'&&!d.rounds&&allQuestions.length!==d.total)pairs.push(['This attempt',`${allQuestions.length} loaded questions (original practice behavior)`]);addInfo(info,pairs);info.hidden=false;err.hidden=true;start.disabled=false;if(k==='mpsc'&&allQuestions.length<100){err.hidden=false;err.textContent=`MPSC requires 100 questions. Please load ${100-allQuestions.length} more.`;start.disabled=true;}}keys.forEach(k=>{const d=EXAMS[k];wrap.append(makeChoice(k,d.label,d.rounds?'2 rounds · 60 + 70 questions':`${d.total} questions · ${d.time} min · +${d.markC} / −${d.markW}`,()=>pick(k)));});body.append(wrap,info,err,actions);if(keys.length===1)pick(keys[0]);}showScreen('configScreen');}
+function buildMockConfig(body){body.innerHTML=`<div class="subheading">Quick presets</div><div class="presets"><button class="btn" data-preset="ssc">SSC CGL</button><button class="btn" data-preset="rrb">RRB NTPC</button><button class="btn selected" data-preset="custom">Custom</button></div><div class="fields"><label class="field">Marks per correct answer<input id="marksCorrect" type="number" min="0.01" step="any" value="1"></label><label class="field">Total marks<input id="totalMarks" type="text" readonly></label><label class="field">Time limit (minutes)<input id="mockTimer" type="number" min="1" step="1" value="9"></label></div><label class="checkline"><input id="negToggle" type="checkbox">Enable negative marking</label><div id="negFields" hidden><label class="field">Deduction per wrong answer<input id="marksWrong" type="number" min="0" step="any" value="0.33"></label></div><p id="mockError" class="message error" role="alert" hidden></p><div class="actions"><button class="btn" onclick="showScreen('modeScreen')">← Back</button><button class="btn primary" id="mockStart">Start mock →</button></div>`;const update=()=>{$('totalMarks').value=fmt(Number($('marksCorrect').value)*allQuestions.length);$('negFields').hidden=!$('negToggle').checked;};body.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{body.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('selected',x===b));const p=b.dataset.preset;if(p==='ssc'||p==='rrb'){$('marksCorrect').value=p==='ssc'?2:1;$('marksWrong').value=p==='ssc'?.5:.33;$('negToggle').checked=true;}else $('negToggle').checked=false;update();});$('marksCorrect').oninput=update;$('negToggle').onchange=update;update();$('mockStart').onclick=()=>{const c=Number($('marksCorrect').value),w=$('negToggle').checked?Number($('marksWrong').value):0,t=Number($('mockTimer').value);if(!Number.isFinite(c)||c<=0||!Number.isFinite(w)||w<0||!Number.isInteger(t)||t<1||!Number.isSafeInteger(t*60000)){message('mockError','Enter positive marks, a non-negative deduction and a valid whole-minute duration.');return;}startAttempt({label:'Mock Test',rounds:[{label:'',questions:[...allQuestions],time:t,markC:c,markW:w,sections:{}}]});};}
+function launchExam(){const d=EXAMS[selectedExam];if(d.rounds){const rounds=d.rounds.map(r=>({...r,questions:allQuestions.filter(q=>Object.keys(r.sections).includes(q.section))}));if(rounds.some(r=>!r.questions.length))throw Error('SSC Tier 2 requires section-tagged questions for both rounds: math, reasoning, english or gs.');startAttempt({label:d.label,rounds});}else{if(selectedExam==='mpsc'&&allQuestions.length<100)throw Error('MPSC requires 100 questions.');startAttempt({label:d.label,rounds:[{...d,label:'',questions:selectedExam==='mpsc'?allQuestions.slice(0,100):[...allQuestions]}]});}}
+function startAttempt(p){plan=p;completed=[];roundIndex=0;lastReport=null;attemptId=Date.now().toString(36)+Math.random().toString(36).slice(2);finishedAt=null;beginRound();}
+function beginRound(){clearInterval(timerInt);const r=plan.rounds[roundIndex];questions=r.questions;answers={};reviewed={};times={};timeAnchor=0;currentQ=0;paused=false;active=true;remainingMs=r.time*60000;$('pauseOverlay').hidden=true;$('quizScreen').inert=false;$('pauseBtn').disabled=false;$('examTitle').textContent=plan.label+(r.label?' · '+r.label:'');$('qMarksInfo').replaceChildren(el('span','positive',`+${r.markC}`),document.createTextNode(' / '),el('span',r.markW?'negative':'muted',r.markW?`−${r.markW}`:'0'));buildSections(r.sections);buildDots();showScreen('quizScreen');renderQuestion(true);startTimer();saveAttempt();}
+function buildSections(sections){const bar=$('sectionBar');bar.replaceChildren();bar.hidden=!Object.keys(sections).length;for(const [k,n] of Object.entries(sections)){const s=el('span','',`${secName(k)} (${n})`);s.dataset.section=k;bar.append(s);}}
+function readableQuestion(text){if(text.includes('\n'))return text;const prefix=text.match(/^\d+[.)]\s+/)?.[0]||'';const source=prefix?text.slice(prefix.length):text;const matches=[...source.matchAll(/(?:^|\s)([1-9]\d?)[.)]\s+(?=\S)/g)];if(matches.length<2||matches[0][1]!=='1'||matches[1][1]!=='2')return text;let result=prefix+source.replace(/\s+([1-9]\d?[.)])\s+(?=\S)/g,'\n$1 ');result=result.replace(/\s+(Which of the following|Which associations|Which statements|Select the correct|Choose the correct)(?=\s)/gi,'\n\n$1');return result;}
+function buildDots(){const w=$('dotsWrap');w.replaceChildren();questions.forEach((_,i)=>{const d=el('button','dot',String(i+1));d.onclick=()=>goTo(i);w.append(d);});}
+function updateDots(){[...$('dotsWrap').children].forEach((d,i)=>{const answered=answers[i]!==undefined;d.classList.toggle('answered',answered);d.classList.toggle('reviewed',!!reviewed[i]);d.classList.toggle('current',i===currentQ);d.setAttribute('aria-label',`Question ${i+1}, ${answered?'answered':'unanswered'}${reviewed[i]?', marked for review':''}`);if(i===currentQ)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current');});const current=$('dotsWrap').children[currentQ],wrap=$('dotsWrap');if(current){const a=current.getBoundingClientRect(),b=wrap.getBoundingClientRect();if(wrap.scrollWidth>wrap.clientWidth){if(a.left<b.left+4)wrap.scrollLeft+=a.left-b.left-8;else if(a.right>b.right-4)wrap.scrollLeft+=a.right-b.right+8;}else{if(a.top<b.top+4)wrap.scrollTop+=a.top-b.top-8;else if(a.bottom>b.bottom-4)wrap.scrollTop+=a.bottom-b.bottom+8;}}}
+function renderQuestion(resetScroll=false){const q=questions[currentQ];$('qNumber').textContent=`Question No. ${currentQ+1}`;$('qText').textContent=readableQuestion(q.q);const n=Object.keys(answers).length;$('progressText').textContent=`Question ${currentQ+1} of ${questions.length}`;$('answeredCount').textContent=`${n} answered`;$('unansweredCount').textContent=`${questions.length-n} unanswered`;$('progressFill').style.width=`${n/questions.length*100}%`;$('prevBtn').disabled=currentQ===0;$('nextBtn').disabled=currentQ===questions.length-1;const w=$('optionsWrap');w.replaceChildren();q.o.forEach((v,i)=>{const selected=answers[currentQ]===letters[i],b=el('button','option'+(selected?' selected':''));b.setAttribute('aria-pressed',String(selected));b.append(el('span','radio'),el('span','opt-letter',letters[i]+'.'),el('span','opt-text',v));b.onclick=()=>selectOption(letters[i]);w.append(b);});document.querySelectorAll('#sectionBar span').forEach(s=>s.classList.toggle('active-sec',s.dataset.section===q.section));updateDots();$('reviewCount').textContent=`${Object.keys(reviewed).length} for review`;$('reviewBtn').setAttribute('aria-pressed',String(!!reviewed[currentQ]));$('reviewBtn').textContent=reviewed[currentQ]?'Unmark review':'Mark for review';if(resetScroll)$('questionScroll').scrollTop=0;fitQuestion();}
+function selectOption(letter){if(!active||paused)return;answers[currentQ]=letter;renderQuestion();saveAttempt();$('optionsWrap').children[letters.indexOf(letter)].focus({preventScroll:true});}
+function clearSelection(){if(!active||paused)return;delete answers[currentQ];renderQuestion();saveAttempt();}
+function navigate(d){goTo(currentQ+d);}function goTo(i){if(!active||paused||i<0||i>=questions.length)return;recordTime();currentQ=i;renderQuestion(true);saveAttempt();}
+function updateTimer(){const secs=Math.max(0,Math.ceil(remainingMs/1000));$('timerDisplay').textContent=`${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`;$('timerDisplay').parentElement.classList.toggle('urgent',secs<=180);}
+function tick(){if(!active||paused)return;remainingMs=Math.max(0,deadline-Date.now());updateTimer();if(remainingMs===0)submitQuiz();}
+function startTimer(){clearInterval(timerInt);deadline=Date.now()+remainingMs;timeAnchor=Date.now();updateTimer();timerInt=setInterval(tick,200);}
+function pauseQuiz(){if(!active||paused)return;tick();if(!active)return;recordTime();paused=true;timeAnchor=0;clearInterval(timerInt);$('quizScreen').inert=true;$('pauseOverlay').hidden=false;$('resumeBtn').focus();saveAttempt();}
+function resumeQuiz(){if(!active||!paused)return;paused=false;$('pauseOverlay').hidden=true;$('quizScreen').inert=false;startTimer();$('pauseBtn').focus();saveAttempt();}
+function confirmSubmit(){if(!active||paused)return;tick();if(!active)return;const n=questions.length-Object.keys(answers).length;const last=roundIndex===plan.rounds.length-1;if(confirm(`${n} question(s) not attempted. ${last?'Submit this test?':'Submit round 1 and continue to round 2?'}`))submitQuiz();else tick();}
+function submitQuiz(){if(!active)return;recordTime();active=false;timeAnchor=0;paused=false;clearInterval(timerInt);$('pauseOverlay').hidden=true;$('quizScreen').inert=false;const r=plan.rounds[roundIndex];completed.push({round:r,answers:{...answers},times:{...times},reviewed:{...reviewed}});if(roundIndex<plan.rounds.length-1){const next=plan.rounds[roundIndex+1];addInfo($('roundInfo'),[['Questions',String(next.questions.length)],['Duration',`${next.time} minutes`],['Marking',`+${next.markC} / −${next.markW}`]]);showScreen('roundScreen');saveAttempt('round');}else{finishedAt=Date.now();showResults();saveAttempt('result');}}
+function startRound2(){if(active||roundIndex>=plan.rounds.length-1)return;roundIndex++;beginRound();}
+function calculateReport(){const rep={label:plan.label,date:new Date(finishedAt||Date.now()),total:0,max:0,score:0,correct:0,wrong:0,skip:0,negative:0,wrongCards:[],skipCards:[],rounds:[],items:[],subjects:[]};for(const {round:r,answers:a,times:t={}} of completed){let c=0,w=0,s=0;const base=rep.total;for(let i=0;i<r.questions.length;i++){const q=r.questions[i],ua=a[i],ca=q.a,card={number:base+i+1,round:r.label,q,ua,ca,ms:t[i]||0,markC:r.markC,markW:r.markW};rep.items.push(card);if(!ua){s++;rep.skipCards.push(card);}else if(ua===ca)c++;else{w++;rep.wrongCards.push(card);}}const max=r.questions.length*r.markC,score=c*r.markC-w*r.markW;rep.total+=r.questions.length;rep.max+=max;rep.score+=score;rep.correct+=c;rep.wrong+=w;rep.skip+=s;rep.negative+=w*r.markW;rep.rounds.push({label:r.label,score,max});}rep.accuracy=rep.correct+rep.wrong?rep.correct/(rep.correct+rep.wrong)*100:null;rep.subjects=subjectSummary(rep.items);return rep;}
+function answerText(q,a){return a?`${a}. ${q.o[letters.indexOf(a)]}`:'Not attempted';}
+function dateText(d){return d.toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}
+function showResults(){lastReport=calculateReport();const r=lastReport;$('resultSubtitle').textContent=`${r.label} · ${dateText(r.date)}`;$('scoreNum').textContent=fmt(r.score);$('scoreDenom').textContent=fmt(r.max);$('statCorrect').textContent=r.correct;$('statWrong').textContent=r.wrong;$('statSkip').textContent=r.skip;$('scoreInfo').replaceChildren();for(const [k,v] of [['Total questions',r.total],['Total marks',fmt(r.max)],['Negative marks',fmt(-r.negative)],['Accuracy (attempted)',r.accuracy===null?'—':fmt(r.accuracy)+'%']]){const p=el('div');p.append(document.createTextNode(k+': '),el('strong','',String(v)));$('scoreInfo').append(p);}[...$('distribution').children].forEach((n,i)=>n.style.width=`${[r.correct,r.wrong,r.skip][i]/r.total*100}%`);$('roundDetails').hidden=r.rounds.length<2;$('roundDetails').textContent=r.rounds.map(x=>`${x.label}: ${fmt(x.score)} / ${fmt(x.max)}`).join('  ·  ');$('wrongCount').textContent=r.wrong;$('skipCount').textContent=r.skip;renderReview('wrongList',r.wrongCards,'wrong');renderReview('skipList',r.skipCards,'skip');message('pdfError','');renderAnalytics(r);saveHistory(r);showScreen('resultScreen');}
+function renderReview(id,cards,type){const wrap=$(id);wrap.replaceChildren();if(!cards.length){wrap.append(el('p','empty-note',type==='wrong'?'No wrong answers.':'No skipped questions.'));return;}const fragment=document.createDocumentFragment();cards.forEach(c=>{const card=el('article','review-card'),top=el('div','review-top');top.append(el('span','',`Question ${c.number}${c.round?' · '+c.round:''}${c.q.section?' · '+secName(c.q.section):''}`),el('span','status '+type,type==='wrong'?'Wrong':'Not attempted'));card.append(top,el('p','review-q',readableQuestion(c.q.q)));const opts=el('div','review-options');c.q.o.forEach((o,i)=>opts.append(el('div','',`${letters[i]}. ${o}`)));card.append(opts);const u=el('p','answer-line '+(type==='wrong'?'wrong':'')),a=el('p','answer-line correct');u.append(el('strong','','Your answer: '),document.createTextNode(answerText(c.q,c.ua)));a.append(el('strong','','Correct answer: '),document.createTextNode(answerText(c.q,c.ca)));card.append(u,a);fragment.append(card);});wrap.append(fragment);}
+function retryQuiz(){if(plan)startAttempt(plan);}
+function newQuiz(){removeSavedAttempt();clearInterval(timerInt);++loadVersion;allQuestions=[];questions=[];answers={};active=false;paused=false;plan=null;lastReport=null;selectedMode=null;selectedExam=null;$('jsonPaste').value='';file.value='';$('startBtn').disabled=true;clearMessages();switchTab('file');showScreen('uploadScreen');}
+// Standalone PDF export: browser-rendered, high-resolution A4 pages. No CDN or server.
+// Canvas rendering preserves Unicode shaping (including Marathi when a system font is present).
+// Compact A4 PDF. Full questions/options retained; answers refer to option letters.
+function makeReportPages(r){
+  // Try progressively denser layouts only if a normal report exceeds 12 pages.
+  for(const density of [1,1.10,1.20,1.30,1.40]){const pages=layoutReport(r,density);if(pages.length<=12||density===1.40)return pages;}
 }
-
-// ── Tabs ───────────────────────────────────────────────────────────────────
-function switchTab(tab) {
-  document.getElementById('fileTab').style.display  = tab==='file'  ? 'block' : 'none';
-  document.getElementById('pasteTab').style.display = tab==='paste' ? 'block' : 'none';
-  document.getElementById('tabFile').classList.toggle('active',  tab==='file');
-  document.getElementById('tabPaste').classList.toggle('active', tab==='paste');
+function layoutReport(r,density){
+  const W=794*density,H=1123*density,S=2/density,M=33,RIGHT=W-M,END=H-38,FONT='Arial, "Nirmala UI", "Noto Sans Devanagari", sans-serif';
+  const pages=[];let canvas,ctx,y,page=0;
+  function font(size,bold=false){ctx.font=`${bold?'bold':'normal'} ${size}px ${FONT}`;}
+  function draw(text,x,yy,size=14,color='#24323e',bold=false){font(size,bold);ctx.fillStyle=color;ctx.fillText(String(text),x,yy);}
+  function line(yy){ctx.strokeStyle='#d9e3e9';ctx.beginPath();ctx.moveTo(M,yy);ctx.lineTo(RIGHT,yy);ctx.stroke();}
+  function finish(){line(H-31);draw('QuizForge | '+r.label,M,H-24,11,'#5e6f7b');font(11);const n='Page '+page;draw(n,RIGHT-ctx.measureText(n).width,H-24,11,'#5e6f7b');const b64=canvas.toDataURL('image/jpeg',.93).split(',')[1];pages.push({bytes:Uint8Array.from(atob(b64),c=>c.charCodeAt(0)),w:canvas.width,h:canvas.height});canvas.width=canvas.height=1;}
+  function newPage(){if(canvas)finish();canvas=document.createElement('canvas');canvas.width=Math.round(W*S);canvas.height=Math.round(H*S);ctx=canvas.getContext('2d');ctx.scale(S,S);ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.textBaseline='top';ctx.fillStyle='#087e9f';ctx.fillRect(0,0,W,5);page++;draw('QuizForge | Test report',M,15,16,'#087e9f',true);line(36);y=45;}
+  function ensure(h){if(y+h>END)newPage();}
+  function wrap(text,size,bold=false){font(size,bold);const max=RIGHT-M,lines=[];let cur='';for(const word of String(text).trim().split(/\s+/)){if(ctx.measureText(word).width>max){if(cur){lines.push(cur);cur='';}const units=typeof Intl.Segmenter==='function'?[...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(word)].map(x=>x.segment):Array.from(word);for(const ch of units){if(cur&&ctx.measureText(cur+ch).width>max){lines.push(cur);cur=ch;}else cur+=ch;}}else if(cur&&ctx.measureText(cur+' '+word).width>max){lines.push(cur);cur=word;}else cur+=(cur?' ':'')+word;}if(cur)lines.push(cur);return lines;}
+  function para(text,size=14,bold=false,color='#24323e',gap=2){const lh=Math.ceil(size*1.27);for(const l of wrap(text,size,bold)){ensure(lh);draw(l,M,y,size,color,bold);y+=lh;}y+=gap;}
+  function heading(t){ensure(43);y+=5;para(t,16,true,'#087e9f',4);}
+  newPage();para(r.label,22,true);para('Attempt: '+dateText(r.date),12,false,'#5e6f7b');
+  para(`Score: ${fmt(r.score)} / ${fmt(r.max)}  |  Total questions: ${r.total}  |  Negative marks: ${fmt(-r.negative)}`,15,true);
+  para(`Correct: ${r.correct}   |   Wrong: ${r.wrong}   |   Not attempted: ${r.skip}   |   Accuracy: ${r.accuracy===null?'N/A':fmt(r.accuracy)+'%'}`,14);
+  para(`Active test time: ${duration(r.items.reduce((n,c)=>n+c.ms,0))}`,13,false,'#5e6f7b');
+  if(r.rounds.length>1)for(const rr of r.rounds)para(`${rr.label}: ${fmt(rr.score)} / ${fmt(rr.max)}`,12);
+  heading('Subject-wise performance');for(const sub of r.subjects)para(`${sub.name}: ${sub.correct} correct, ${sub.wrong} wrong, ${sub.skip} skipped | ${fmt(sub.score)} / ${fmt(sub.max)} marks`,12);
+  function review(cards,type){heading(`${type==='wrong'?'Wrong questions':'Skipped questions'} (${cards.length})`);if(!cards.length){para('None.',12);return;}for(const c of cards){const name=`Q${c.number}${c.round?' · '+c.round:''}${c.q.section?' · '+secName(c.q.section):''}`;const q=name+'. '+c.q.q;const opts=c.q.o.map((o,i)=>`${letters[i]}. ${o}`).join('   |   ');const ans=`Your answer: ${c.ua||'Not attempted'}   |   Correct answer: ${c.ca}   |   Time: ${duration(c.ms)}`;const height=wrap(q,14,true).length*18+wrap(opts,13).length*17+wrap(ans,12,true).length*16+10;ensure(Math.min(height,END-45));para(q,14,true,'#24323e',2);para(opts,13,false,'#4e5f6b',2);para(ans,12,true,type==='wrong'?'#a33a36':'#157c4b',3);if(y+6<END){line(y);y+=5;}}}
+  review(r.wrongCards,'wrong');review(r.skipCards,'skip');
+  heading('Time spent per question');for(let i=0;i<r.items.length;i+=5){para(r.items.slice(i,i+5).map(c=>`Q${c.number}: ${duration(c.ms)}`).join('    |    '),12,false,'#4e5f6b');}
+  finish();return pages;
 }
+function makePdf(pages){const encoder=new TextEncoder(),parts=[],offsets=[0];let length=0;function append(x){const b=typeof x==='string'?encoder.encode(x):x;parts.push(b);length+=b.length;}function obj(id,body,stream){offsets[id]=length;append(`${id} 0 obj\n${body}`);if(stream){append('\nstream\n');append(stream);append('\nendstream');}append('\nendobj\n');}append('%PDF-1.4\n');append(new Uint8Array([37,226,227,207,211,10]));obj(1,'<< /Type /Catalog /Pages 2 0 R >>');obj(2,`<< /Type /Pages /Count ${pages.length} /Kids [${pages.map((_,i)=>`${3+i*3} 0 R`).join(' ')}] >>`);pages.forEach((p,i)=>{const id=3+i*3;obj(id,`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 ${id+1} 0 R >> >> /Contents ${id+2} 0 R >>`);obj(id+1,`<< /Type /XObject /Subtype /Image /Width ${p.w} /Height ${p.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${p.bytes.length} >>`,p.bytes);const content=encoder.encode('q\n595.28 0 0 841.89 0 0 cm\n/Im0 Do\nQ\n');obj(id+2,`<< /Length ${content.length} >>`,content);});const start=length;append(`xref\n0 ${offsets.length}\n0000000000 65535 f \n`);for(let i=1;i<offsets.length;i++)append(`${String(offsets[i]).padStart(10,'0')} 00000 n \n`);append(`trailer\n<< /Size ${offsets.length} /Root 1 0 R >>\nstartxref\n${start}\n%%EOF\n`);return new Blob(parts,{type:'application/pdf'});}
+async function downloadReport(){if(!lastReport)return;const report=lastReport,b=$('pdfBtn');b.disabled=true;b.textContent='Preparing PDF…';message('pdfError','');try{await new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,0)));if(document.fonts)await document.fonts.ready;const blob=makePdf(makeReportPages(report));const url=URL.createObjectURL(blob);const a=document.createElement('a');const d=report.date;const stamp=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}_${String(d.getHours()).padStart(2,'0')}-${String(d.getMinutes()).padStart(2,'0')}-${String(d.getSeconds()).padStart(2,'0')}`;a.href=url;a.download=`QuizForge_${report.label.replace(/[^a-zA-Z0-9]+/g,'-')}_${stamp}.pdf`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}catch(e){message('pdfError','Could not create the PDF: '+e.message);}finally{b.disabled=false;b.textContent='↓ Download PDF report';}}
 
-// ── File loading ───────────────────────────────────────────────────────────
-const dropZone  = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault(); dropZone.classList.remove('drag');
-  handleFile(e.dataTransfer.files[0]);
-});
-fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
-
-function handleFile(file) {
-  if (!file) return;
-  clearMessages();
-  const ext = file.name.split('.').pop().toLowerCase();
-  const reader = new FileReader();
-  reader.onload = e => processText(e.target.result, ext);
-  reader.readAsText(file);
-}
-
-function loadFromPaste() {
-  const txt = document.getElementById('jsonPaste').value.trim();
-  if (!txt) { setError('Paste some JSON first!'); return; }
-  processText(txt, 'json');
-}
-
-function clearPaste() {
-  document.getElementById('jsonPaste').value = '';
-  clearMessages();
-  document.getElementById('startBtn').disabled = true;
-  allQuestions = []; questions = [];
-}
-
-function processText(text, ext) {
-  clearMessages();
-  try {
-    let qs;
-    if (ext === 'json') qs = JSON.parse(text);
-    else if (ext === 'csv') qs = parseCSV(text);
-    else throw new Error('Only JSON or CSV supported.');
-    validate(qs);
-    allQuestions = qs;
-    questions = qs; // default for marks screen total calc
-    setStatus(`✅ ${qs.length} questions loaded!`);
-    document.getElementById('startBtn').disabled = false;
-    document.getElementById('marksSubtitle').textContent = `${qs.length} questions`;
-    updateTotalMarks();
-  } catch(e) {
-    setError('❌ ' + e.message);
-    document.getElementById('startBtn').disabled = true;
-    allQuestions = []; questions = [];
-  }
-}
-
-function parseCSV(text) {
-  const lines = text.trim().split('\n').filter(l => l.trim());
-  const start = (lines[0].toLowerCase().includes('question') || lines[0].toLowerCase().startsWith('q,')) ? 1 : 0;
-  return lines.slice(start).map((line, i) => {
-    const cols = [...line.matchAll(/("(?:[^"]|"")*"|[^,]*)/g)]
-      .map(m => m[0]).filter((_, i2) => i2 % 2 === 0)
-      .map(c => c.replace(/^"|"$/g,'').replace(/""/g,'"').trim());
-    if (cols.length < 6) throw new Error(`Row ${i+start+1}: need 6 columns.`);
-    return { q: cols[0], o: [cols[1],cols[2],cols[3],cols[4]], a: cols[5] };
-  });
-}
-
-function validate(qs) {
-  if (!Array.isArray(qs) || qs.length === 0) throw new Error('No questions found in file.');
-  qs.forEach((q, i) => {
-    if (!q.q) throw new Error(`Q${i+1}: missing question text.`);
-    if (!Array.isArray(q.o) || q.o.length !== 4) throw new Error(`Q${i+1}: need exactly 4 options.`);
-    if (!q.a) throw new Error(`Q${i+1}: missing answer field "a".`);
-  });
-}
-
-function clearMessages() {
-  document.getElementById('uploadStatus').textContent = '';
-  document.getElementById('uploadError').textContent  = '';
-}
-function setStatus(msg) { document.getElementById('uploadStatus').textContent = msg; }
-function setError(msg)  { document.getElementById('uploadError').textContent  = msg; }
-
-// ── Mode & Config Flow ─────────────────────────────────────────────────────
-function goToMode() {
-  selectedMode=null; selectedExam=null;
-  document.getElementById('modeSub').textContent = `${allQuestions.length} questions loaded · choose mode`;
-  document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('modeNextBtn').disabled=true;
-  showScreen('modeScreen');
-}
-function pickMode(m) {
-  selectedMode=m;
-  document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('mode-'+m).classList.add('selected');
-  document.getElementById('modeNextBtn').disabled=false;
-}
-function goToConfig() { buildConfig(); showScreen('configScreen'); }
-
-function buildConfig() {
-  const body=document.getElementById('configBody');
-  body.innerHTML='';
-  if (selectedMode==='mock') {
-    document.getElementById('configTitle').textContent='Mock Setup';
-    buildMockConfig(body); return;
-  }
-  document.getElementById('configTitle').textContent = selectedMode==='tier1'?'Tier 1 / CBT 1':'Tier 2 / CBT 2';
-  const opts = selectedMode==='tier1'
-    ? [{key:'ssc_tier1',icon:'📋',label:'SSC CGL Tier 1',chips:['100 Qs','60 mins','+2/−0.5']},
-       {key:'rrb_cbt1', icon:'🚆',label:'RRB NTPC CBT 1',chips:['100 Qs','90 mins','+1/−0.33']}]
-    : [{key:'ssc_tier2',icon:'🏆',label:'SSC CGL Tier 2',chips:['2 Rounds','130 Qs','60+60 mins','+3/−1']},
-       {key:'rrb_cbt2', icon:'🚆',label:'RRB NTPC CBT 2',chips:['120 Qs','90 mins','+1/−0.33']}];
-
-  const lbl=document.createElement('div');
-  lbl.className='section-label';lbl.style.marginBottom='10px';lbl.textContent='Choose Exam Pattern';
-  body.appendChild(lbl);
-
-  opts.forEach(opt=>{
-    const c=document.createElement('div');
-    c.className='exam-card'; c.id='ec-'+opt.key;
-    c.innerHTML=`<div class="ec-title">${opt.icon} ${opt.label}</div>
-      <div class="exam-chips">${opt.chips.map(ch=>`<span class="chip b">${ch}</span>`).join('')}</div>`;
-    c.onclick=()=>pickExam(opt.key,opts);
-    body.appendChild(c);
-  });
-
-  const infoBox=document.createElement('div');
-  infoBox.className='info-box'; infoBox.id='examInfoBox';
-  body.appendChild(infoBox);
-
-  const sb=document.createElement('button');
-  sb.className='btn-primary'; sb.id='examStartBtn'; sb.disabled=true;
-  sb.textContent='Start Exam →'; sb.style.marginTop='8px';
-  sb.onclick=()=>launchExam();
-  body.appendChild(sb);
-
-  const bb=document.createElement('button');
-  bb.className='btn-new'; bb.style.marginTop='8px';
-  bb.textContent='← Back'; bb.onclick=()=>showScreen('modeScreen');
-  body.appendChild(bb);
-}
-
-function pickExam(key, opts) {
-  selectedExam=key;
-  opts.forEach(o=>document.getElementById('ec-'+o.key).classList.remove('selected'));
-  document.getElementById('ec-'+key).classList.add('selected');
-  const def=EXAM_DEFS[key];
-  const box=document.getElementById('examInfoBox');
-  box.className='info-box show';
-  box.innerHTML=`<div class="ib-title">${def.label}</div>`+
-    def.info.map(([l,v])=>`<div class="info-row"><span class="ir-l">${l}</span><span class="ir-v">${v}</span></div>`).join('');
-  document.getElementById('examStartBtn').disabled=false;
-}
-
-function buildMockConfig(body) {
-  body.innerHTML=`
-    <div class="section-label" style="margin-bottom:10px;">Quick Presets</div>
-    <div class="preset-row">
-      <div class="preset-card" id="preset-ssc" onclick="applyPreset('ssc')">
-        <div class="pc-name">SSC CGL</div><div class="pc-detail">+2 correct<br/>−0.5 wrong</div>
-      </div>
-      <div class="preset-card" id="preset-rrb" onclick="applyPreset('rrb')">
-        <div class="pc-name">RRB NTPC</div><div class="pc-detail">+1 correct<br/>−0.33 wrong</div>
-      </div>
-      <div class="preset-card active" id="preset-custom" onclick="applyPreset('custom')">
-        <div class="pc-name">Custom</div><div class="pc-detail">Set your<br/>own marks</div>
-      </div>
-    </div>
-    <div class="section-label" style="margin-bottom:8px;">Marks Per Question</div>
-    <div class="marks-row">
-      <div class="marks-field">
-        <label>✅ Correct answer</label>
-        <input type="number" id="marksCorrect" value="1" min="0.5" step="0.5" oninput="updateTotalMarks();updateNegPreview();"/>
-      </div>
-      <div class="marks-field">
-        <label>Total marks</label>
-        <input type="number" id="totalMarks" value="${allQuestions.length}" readonly style="opacity:0.6;cursor:not-allowed;"/>
-      </div>
-    </div>
-    <div class="section-label" style="margin-bottom:8px;">Timer (minutes)</div>
-    <div class="marks-row">
-      <div class="marks-field">
-        <label>⏱ Time limit</label>
-        <input type="number" id="mockTimer" value="9" min="1"/>
-      </div>
-      <div class="marks-field">
-        <label style="color:transparent;">–</label>
-        <div style="font-size:10px;color:var(--muted);padding-top:14px;">Minutes for the test</div>
-      </div>
-    </div>
-    <div class="neg-row">
-      <div><div class="neg-label">Negative Marking</div><div class="neg-sub">Deduct marks for wrong answers</div></div>
-      <label class="toggle"><input type="checkbox" id="negToggle" onchange="toggleNeg()"/><span class="toggle-slider"></span></label>
-    </div>
-    <div class="neg-fields" id="negFields">
-      <label>❌ Marks deducted per wrong answer</label>
-      <input type="number" id="marksWrong" value="0.33" min="0" step="0.01" oninput="updateNegPreview();"/>
-      <div class="neg-preview" id="negPreview"></div>
-    </div>
-    <button class="btn-primary" onclick="launchMock()" style="margin-top:8px;">Start Mock →</button>
-    <button class="btn-new" onclick="showScreen('modeScreen')" style="margin-top:8px;">← Back</button>`;
-  updateTotalMarks();
-}
-
-function launchMock() {
-  markCorrect = parseFloat(document.getElementById('marksCorrect').value)||1;
-  negEnabled  = document.getElementById('negToggle').checked;
-  markWrong   = negEnabled?(parseFloat(document.getElementById('marksWrong').value)||0):0;
-  const mins  = parseInt(document.getElementById('mockTimer').value)||9;
-  questions   = [...allQuestions];
-  examLabel   = 'Mock Test';
-  beginQuiz(mins*60);
-}
-
-function launchExam() {
-  const def=EXAM_DEFS[selectedExam];
-  examLabel=def.label;
-  round1Done=false; round1Answers={};
-
-  if (def.rounds===2) {
-    // SSC CGL Tier 2 — split by section
-    const r1secs=Object.keys(def.round1.sections);
-    const r2secs=Object.keys(def.round2.sections);
-    questions       = allQuestions.filter(q=>r1secs.includes((q.section||'').toLowerCase()));
-    round2Questions = allQuestions.filter(q=>r2secs.includes((q.section||'').toLowerCase()));
-    round1MarkC=def.round1.markC; round1MarkW=def.round1.markW;
-    round2MarkC=def.round2.markC; round2MarkW=def.round2.markW;
-    markCorrect=round1MarkC; markWrong=round1MarkW; negEnabled=true;
-    currentExamSections=def.round1.sections;
-    document.getElementById('qMarksInfo').textContent=`+${markCorrect} / −${markWrong} · Round 1`;
-    beginQuizWithSections(def.round1.time*60, def.round1.sections, def.round1.label);
-  } else {
-    questions=[...allQuestions];
-    markCorrect=def.markC; markWrong=def.markW; negEnabled=true;
-    currentExamSections=def.sections;
-    document.getElementById('qMarksInfo').textContent=`+${markCorrect} / −${markWrong}`;
-    beginQuizWithSections(def.time*60, def.sections, '');
-  }
-}
-
-let currentExamSections = {};
-
-function beginQuiz(seconds) {
-  currentExamSections={};
-  answers={}; currentQ=0; timeLeft=seconds;
-  document.getElementById('sectionBar').className='section-bar';
-  document.getElementById('qSecTag').className='q-section-tag';
-  buildDots(); renderQuestion(); startTimer();
-  showScreen('quizScreen');
-  document.getElementById('qMarksInfo').textContent = negEnabled?`+${markCorrect} / −${markWrong}`:`+${markCorrect} / no negative`;
-}
-
-function beginQuizWithSections(seconds, sections, roundLabel) {
-  answers={}; currentQ=0; timeLeft=seconds;
-  buildSectionBar(sections);
-  buildDots(); renderQuestion(); startTimer();
-  showScreen('quizScreen');
-  // update topbar round label
-  const titleEl=document.querySelector('.quiz-title');
-  if (titleEl) titleEl.textContent = roundLabel ? `${examLabel} · ${roundLabel}` : examLabel;
-}
-
-function buildSectionBar(sections) {
-  const bar=document.getElementById('sectionBar');
-  const keys=Object.keys(sections||{});
-  if (!keys.length){bar.className='section-bar';return;}
-  bar.className='section-bar show';
-  bar.innerHTML='';
-  keys.forEach(s=>{
-    const chip=document.createElement('div');
-    chip.className='sec-chip'; chip.id='secchip-'+s;
-    chip.textContent=secName(s)+' ('+sections[s]+')';
-    bar.appendChild(chip);
-  });
-}
-
-function updateSectionBar() {
-  const cur=(questions[currentQ]?.section||'').toLowerCase();
-  document.querySelectorAll('.sec-chip').forEach(c=>{
-    c.classList.toggle('active-sec', c.id==='secchip-'+cur);
-  });
-  const tag=document.getElementById('qSecTag');
-  if (cur && Object.keys(currentExamSections).length) {
-    tag.textContent=secName(cur); tag.className='q-section-tag show';
-  } else { tag.className='q-section-tag'; }
-}
-
-// ── Marks Setup (legacy — used by mock flow above) ─────────────────────────
-function goToMarks() { goToMode(); } // redirect old calls
-
-function applyPreset(p) {
-  document.querySelectorAll('.preset-card').forEach(c=>c.classList.remove('active'));
-  const el=document.getElementById('preset-'+p);
-  if(el) el.classList.add('active');
-  const mc=document.getElementById('marksCorrect');
-  const mw=document.getElementById('marksWrong');
-  const nt=document.getElementById('negToggle');
-  const nf=document.getElementById('negFields');
-  if (!mc||!nt) return;
-  if (p==='ssc'){
-    mc.value=2; if(mw)mw.value=0.5;
-    nt.checked=true; if(nf)nf.classList.add('show');
-  } else if(p==='rrb'){
-    mc.value=1; if(mw)mw.value=0.33;
-    nt.checked=true; if(nf)nf.classList.add('show');
-  } else {
-    nt.checked=false; if(nf)nf.classList.remove('show');
-  }
-  updateTotalMarks(); updateNegPreview();
-}
-
-document.getElementById('marksCorrect') && document.getElementById('marksCorrect').addEventListener('input', () => { updateTotalMarks(); updateNegPreview(); });
-document.getElementById('marksWrong') && document.getElementById('marksWrong').addEventListener('input', updateNegPreview);
-
-function updateTotalMarks() {
-  const mc = parseFloat(document.getElementById('marksCorrect')?.value) || 1;
-  const el = document.getElementById('totalMarks');
-  if(el) el.value = (allQuestions.length * mc).toFixed(mc % 1 === 0 ? 0 : 1);
-}
-
-function toggleNeg() {
-  const on = document.getElementById('negToggle').checked;
-  document.getElementById('negFields').classList.toggle('show', on);
-  updateNegPreview();
-}
-
-function updateNegPreview() {
-  const mc = parseFloat(document.getElementById('marksCorrect').value) || 1;
-  const mw = parseFloat(document.getElementById('marksWrong').value)   || 0;
-  const on = document.getElementById('negToggle').checked;
-  if (!on) { document.getElementById('negPreview').innerHTML = ''; return; }
-  document.getElementById('negPreview').innerHTML =
-    `Correct: <span>+${mc}</span> &nbsp;|&nbsp; Wrong: <span class="neg">−${mw}</span>`;
-}
-
-// ── Quiz Logic ─────────────────────────────────────────────────────────────
-function startQuiz() {
-  // Called from old marksScreen — redirect to mock launch
-  markCorrect = parseFloat(document.getElementById('marksCorrect').value) || 1;
-  negEnabled  = document.getElementById('negToggle').checked;
-  markWrong   = negEnabled ? (parseFloat(document.getElementById('marksWrong').value) || 0) : 0;
-  const mins  = parseInt(document.getElementById('mockTimer')?.value)||9;
-  questions   = [...allQuestions];
-  examLabel   = 'Mock Test';
-  beginQuiz(mins*60);
-}
-
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function buildDots() {
-  const wrap = document.getElementById('dotsWrap');
-  wrap.innerHTML = '';
-  questions.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i===0?' current':'');
-    d.textContent = i+1;
-    d.onclick = () => goTo(i);
-    wrap.appendChild(d);
-  });
-}
-
-function updateDots() {
-  document.querySelectorAll('.dot').forEach((d, i) => {
-    d.className = 'dot';
-    if (answers[i] !== undefined) d.classList.add('answered');
-    if (i === currentQ) d.classList.add('current');
-  });
-}
-
-function renderQuestion() {
-  const q = questions[currentQ];
-  const total = questions.length;
-  const letters = ['A','B','C','D'];
-
-  document.getElementById('qNumber').textContent = `Question ${currentQ+1}`;
-  document.getElementById('qText').textContent   = q.q;
-  document.getElementById('progressText').textContent = `Q ${currentQ+1} of ${total}`;
-  document.getElementById('answeredCount').textContent = `${Object.keys(answers).length} answered`;
-  document.getElementById('progressFill').style.width = `${((currentQ+1)/total)*100}%`;
-  document.getElementById('prevBtn').disabled = currentQ === 0;
-  document.getElementById('nextBtn').disabled = currentQ === total-1;
-
-  const wrap = document.getElementById('optionsWrap');
-  wrap.innerHTML = '';
-  q.o.forEach((opt, i) => {
-    const div = document.createElement('div');
-    div.className = 'option' + (answers[currentQ]===letters[i]?' selected':'');
-    div.innerHTML = `<div class="opt-letter">${letters[i]}</div><div class="opt-text">${opt}</div>`;
-    div.onclick = () => selectOption(letters[i]);
-    wrap.appendChild(div);
-  });
-  updateDots(); updateSectionBar();
-}
-
-function selectOption(letter) { answers[currentQ] = letter; renderQuestion(); }
-function clearSelection()     { delete answers[currentQ];   renderQuestion(); }
-function navigate(dir)        { const n = currentQ+dir; if(n>=0&&n<questions.length){currentQ=n;renderQuestion();} }
-function goTo(i)              { currentQ=i; renderQuestion(); }
-
-function confirmSubmit() {
-  const unanswered = questions.length - Object.keys(answers).length;
-  const isTier2Round1 = selectedExam==='ssc_tier2' && !round1Done;
-  const msg = isTier2Round1
-    ? `Round 1: ${unanswered} unanswered. Submit and proceed to Round 2?`
-    : `${unanswered} unanswered question(s). Submit test?`;
-  if (unanswered > 0 && !confirm(msg)) return;
-  submitQuiz();
-}
-
-function submitQuiz() {
-  clearInterval(timerInt);
-  if (selectedExam==='ssc_tier2' && !round1Done) {
-    finishRound1();
-  } else {
-    showResults();
-  }
-}
-
-function finishRound1() {
-  round1Done=true;
-  round1Answers={...answers};
-  const r2=EXAM_DEFS.ssc_tier2.round2;
-  document.getElementById('roundSub').textContent=`Get ready for: ${r2.label}`;
-  document.getElementById('roundInfoBox').innerHTML=`
-    <div class="info-row"><span class="ir-l">Round 2</span><span class="ir-v" style="color:var(--gold-lt)">${r2.label}</span></div>
-    <div class="info-row"><span class="ir-l">Questions</span><span class="ir-v">${r2.total}</span></div>
-    <div class="info-row"><span class="ir-l">Time</span><span class="ir-v">${r2.time} mins</span></div>
-    <div class="info-row"><span class="ir-l">Marks</span><span class="ir-v ir-v g">+${r2.markC} / <span style="color:var(--red)">−${r2.markW}</span></span></div>`;
-  showScreen('roundScreen');
-}
-
-function startRound2() {
-  const r2=EXAM_DEFS.ssc_tier2.round2;
-  markCorrect=round2MarkC; markWrong=round2MarkW; negEnabled=true;
-  questions=[...round2Questions];
-  currentExamSections=r2.sections;
-  document.getElementById('qMarksInfo').textContent=`+${markCorrect} / −${markWrong} · Round 2`;
-  const titleEl=document.querySelector('.quiz-title');
-  if(titleEl) titleEl.textContent=`${examLabel} · ${r2.label}`;
-  beginQuizWithSections(r2.time*60, r2.sections, r2.label);
-}
-
-// ── Results ────────────────────────────────────────────────────────────────
-function decodeAns(enc) {
-  try { return atob(enc).trim().toUpperCase(); }
-  catch(e) { return enc.trim().toUpperCase(); }
-}
-
-function calcRound(qs, ans, mC, mW) {
-  let correct=0,wrong=0,skip=0,score=0; const wrongCards=[];
-  qs.forEach((q,i)=>{
-    const ca=decodeAns(q.a), ua=ans[i];
-    if(!ua){skip++;wrongCards.push({i,q,ua:'Skipped',ca});}
-    else if(ua===ca){correct++;score+=mC;}
-    else{wrong++;score-=mW;wrongCards.push({i,q,ua,ca});}
-  });
-  return {correct,wrong,skip,score:Math.max(0,Math.round(score*100)/100),wrongCards};
-}
-
-function showResults() {
-  showScreen('resultScreen');
-  const LTRS=['A','B','C','D'];
-
-  if (selectedExam==='ssc_tier2') {
-    // Combined Tier 2
-    const r1=calcRound(questions.length?questions:allQuestions.filter(q=>['math','reasoning'].includes(q.section?.toLowerCase())), round1Answers, round1MarkC, round1MarkW);
-    const r2=calcRound(round2Questions, answers, round2MarkC, round2MarkW);
-    const totalScore=r1.score+r2.score;
-    const r1Max=EXAM_DEFS.ssc_tier2.round1.total*round1MarkC;
-    const r2Max=EXAM_DEFS.ssc_tier2.round2.total*round2MarkC;
-    const pct=Math.round(((r1.correct+r2.correct)/(r1.correct+r2.correct+r1.wrong+r2.wrong+r1.skip+r2.skip||1))*100);
-
-    setResultMeta(pct,'SSC CGL Tier 2');
-    document.getElementById('scoreNum').textContent=totalScore;
-    document.getElementById('scoreDenom').textContent=`/ ${r1Max+r2Max}`;
-    document.getElementById('statCorrect').textContent=r1.correct+r2.correct;
-    document.getElementById('statWrong').textContent=r1.wrong+r2.wrong;
-    document.getElementById('statSkip').textContent=r1.skip+r2.skip;
-    document.getElementById('scoreInfo').innerHTML=`
-      <div class="si-row">Round 1 Score: <span class="g">${r1.score}/${r1Max}</span></div>
-      <div class="si-row">Round 2 Score: <span class="g">${r2.score}/${r2Max}</span></div>
-      <div class="si-row">Total: <span>${totalScore}/${r1Max+r2Max}</span></div>
-      <div class="si-row">Negative: <span class="r">−${((r1.wrong*round1MarkW)+(r2.wrong*round2MarkW)).toFixed(2)}</span></div>`;
-    buildWrongList([...r1.wrongCards,...r2.wrongCards]);
-    return;
-  }
-
-  let correct=0, wrong=0, skip=0, score=0;
-  const wrongCards=[]; const totalPossible=questions.length*markCorrect;
-  questions.forEach((q,i)=>{
-    const correctAns=decodeAns(q.a), userAns=answers[i];
-    if(!userAns){skip++;wrongCards.push({i,q,ua:'Skipped',ca:correctAns});}
-    else if(userAns===correctAns){correct++;score+=markCorrect;}
-    else{wrong++;score-=markWrong;wrongCards.push({i,q,ua:userAns,ca:correctAns});}
-  });
-  score=Math.max(0,Math.round(score*100)/100);
-  const pct=Math.round((correct/questions.length)*100);
-  setResultMeta(pct, examLabel||'Test');
-  document.getElementById('scoreNum').textContent=score;
-  document.getElementById('scoreDenom').textContent=`/ ${totalPossible}`;
-  document.getElementById('statCorrect').textContent=correct;
-  document.getElementById('statWrong').textContent=wrong;
-  document.getElementById('statSkip').textContent=skip;
-  document.getElementById('scoreInfo').innerHTML=`
-    <div class="si-row">Questions: <span>${questions.length}</span></div>
-    <div class="si-row">Correct: <span class="g">${correct}</span></div>
-    <div class="si-row">Wrong: <span class="r">${wrong}</span></div>
-    <div class="si-row">Skipped: <span class="y">${skip}</span></div>
-    ${negEnabled?`<div class="si-row">Negative: <span class="r">−${(wrong*markWrong).toFixed(2)}</span></div>`:''}`;
-  buildWrongList(wrongCards);
-}
-
-function setResultMeta(pct, label) {
-  const emoji=pct>=80?'🏆':pct>=60?'🎯':pct>=40?'📚':'💪';
-  const msg  =pct>=80?'Excellent!':pct>=60?'Good job!':pct>=40?'Keep practicing!':'Keep going!';
-  document.getElementById('resultTitle').textContent=emoji+' '+msg;
-  document.getElementById('resultSubtitle').textContent=`${label} · ${pct}% accuracy`;
-}
-
-function buildWrongList(cards) {
-  const LTRS=['A','B','C','D'];
-  const list=document.getElementById('wrongList');
-  list.innerHTML='';
-  if(!cards.length){list.innerHTML='<p style="color:var(--green);font-size:13px;text-align:center;padding:12px">🎉 No wrong answers!</p>';return;}
-  cards.forEach(({i,q,ua,ca})=>{
-    const ct=q.o[LTRS.indexOf(ca)]||'';
-    const ut=ua==='Skipped'?'Skipped':(q.o[LTRS.indexOf(ua)]||'');
-    list.innerHTML+=`<div class="wrong-card">
-      <div class="wq-num">Q${i+1}${q.section?' · '+secName(q.section):''}</div>
-      <div class="wq-text">${q.q}</div>
-      <div class="your-ans">✗ Your answer: ${ua==='Skipped'?'Skipped':ua+') '+ut}</div>
-      <div class="corr-ans">✓ Correct: ${ca}) ${ct}</div>
-    </div>`;
-  });
-}
-
-// ── Timer ──────────────────────────────────────────────────────────────────
-function startTimer() {
-  updateTimerDisplay();
-  timerInt = setInterval(() => {
-    timeLeft--;
-    updateTimerDisplay();
-    if (timeLeft <= 0) { clearInterval(timerInt); submitQuiz(); }  }, 1000);
-}
-
-function updateTimerDisplay() {
-  const m = Math.floor(timeLeft/60);
-  const s = timeLeft%60;
-  const el = document.getElementById('timerDisplay');
-  el.textContent = `${m}:${String(s).padStart(2,'0')}`;
-  el.className = timeLeft<=60?'danger':timeLeft<=180?'warn':'';
-}
-
-// ── Retry / New ────────────────────────────────────────────────────────────
-function retryQuiz() {
-  round1Done=false; round1Answers={};
-  if (selectedMode==='mock' || !selectedExam) {
-    const mins=parseInt(document.getElementById('mockTimer')?.value)||9;
-    questions=[...allQuestions]; beginQuiz(mins*60);
-  } else { launchExam(); }
-}
-function newQuiz() {
-  allQuestions=[]; questions=[]; answers={};
-  clearMessages();
-  document.getElementById('startBtn').disabled=true;
-  document.getElementById('jsonPaste').value='';
-  fileInput.value='';
-  showScreen('uploadScreen');
-}
-
-const letters = ['A','B','C','D'];
+// Local-only storage; no server, login, external library or network calls.
+const SAVE_KEY='quizforge.attempt.v3', HISTORY_KEY='quizforge.history.v3';
+let reviewed={},times={},timeAnchor=0,attemptId='',finishedAt=null,historyBack='uploadScreen';
+let storageWarning=false;
+function storageFailure(){storageWarning=true;const note=$('storageNote');note.textContent='Local storage is unavailable or full. Keep this tab open and download your PDF.';let warn=$('saveWarning');if(!warn){warn=el('small','storage-warning');warn.id='saveWarning';$('examTitle').after(warn);}warn.textContent='Local save unavailable';}
+function writeLocal(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true;}catch(e){storageFailure();return false;}}
+function readLocal(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback;}catch(e){storageFailure();return fallback;}}
+function removeSavedAttempt(){try{localStorage.removeItem(SAVE_KEY);}catch(e){storageFailure();}}
+function recordTime(){if(!active||paused||!timeAnchor)return;const now=Math.min(Date.now(),deadline);const delta=Math.max(0,now-timeAnchor);times[currentQ]=(times[currentQ]||0)+delta;timeAnchor=now;}
+function saveAttempt(phase=active?'active':null){if(!plan||!phase)return;if(active&&!paused)recordTime();writeLocal(SAVE_KEY,{version:3,phase,plan,roundIndex,completed,answers,reviewed,times,currentQ,paused,remainingMs:paused?remainingMs:Math.max(0,deadline-Date.now()),deadline,timeAnchor,attemptId,finishedAt});}
+function restoreAttempt(){const st=readLocal(SAVE_KEY,null);if(!st||st.version!==3||!st.plan?.rounds?.length)return;try{plan=st.plan;roundIndex=st.roundIndex;completed=st.completed||[];attemptId=st.attemptId;finishedAt=st.finishedAt;allQuestions=plan.rounds.flatMap(r=>r.questions);if(st.phase==='result'){showResults();return;}if(st.phase==='round'){const next=plan.rounds[roundIndex+1];addInfo($('roundInfo'),[['Questions',String(next.questions.length)],['Duration',`${next.time} minutes`],['Marking',`+${next.markC} / −${next.markW}`]]);showScreen('roundScreen');return;}if(st.phase!=='active')return;const r=plan.rounds[roundIndex];questions=r.questions;answers=st.answers||{};reviewed=st.reviewed||{};times=st.times||{};currentQ=Math.max(0,Math.min(questions.length-1,st.currentQ||0));paused=!!st.paused;active=true;remainingMs=paused?st.remainingMs:Math.max(0,st.deadline-Date.now());if(!paused&&st.timeAnchor)times[currentQ]=(times[currentQ]||0)+Math.max(0,Math.min(Date.now(),st.deadline)-st.timeAnchor);$('examTitle').textContent=plan.label+(r.label?' · '+r.label:'');$('qMarksInfo').replaceChildren(el('span','positive',`+${r.markC}`),document.createTextNode(' / '),el('span',r.markW?'negative':'muted',r.markW?`−${r.markW}`:'0'));buildSections(r.sections||{});buildDots();showScreen('quizScreen');renderQuestion(true);updateTimer();if(paused){$('quizScreen').inert=true;$('pauseOverlay').hidden=false;}else if(remainingMs<=0){timeAnchor=0;submitQuiz();}else{startTimer();}saveAttempt();}catch(e){active=false;paused=false;clearInterval(timerInt);removeSavedAttempt();showScreen('uploadScreen');message('uploadError','Could not restore the saved attempt. Please load questions again.');}}
+function toggleReview(){if(!active||paused)return;if(reviewed[currentQ])delete reviewed[currentQ];else reviewed[currentQ]=true;renderQuestion();saveAttempt();}
+// Prefer a completely fitted question; only exceptional long content scrolls inside its own pane.
+function fitQuestion(){const pane=$('questionScroll'),q=$('qText'),opts=$('optionsWrap');q.style.fontSize='';opts.style.setProperty('--option-font-size','');if(!pane.clientHeight)return;const qsize=parseFloat(getComputedStyle(q).fontSize),osize=parseFloat(getComputedStyle(opts.querySelector('.option')).fontSize);for(let scale=1;pane.scrollHeight>pane.clientHeight+2&&scale>.78;){scale-=.04;q.style.fontSize=Math.max(13,qsize*scale)+'px';opts.style.setProperty('--option-font-size',Math.max(12,osize*scale)+'px');}if(pane.scrollHeight<=pane.clientHeight+2)pane.scrollTop=0;}
+window.addEventListener('resize',()=>{if(active){fitQuestion();updateDots();}});
+window.addEventListener('pagehide',()=>{if(active)saveAttempt();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)saveAttempt();});
+function duration(ms){const seconds=Math.max(0,Math.round((ms||0)/1000));return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;}
+function subjectSummary(items){const map=new Map();for(const c of items){const key=c.q.section||'';if(!map.has(key))map.set(key,{name:key?secName(key):'Untagged',total:0,correct:0,wrong:0,skip:0,score:0,max:0,ms:0});const sub=map.get(key);sub.total++;sub.max+=c.markC;sub.ms+=c.ms;if(!c.ua)sub.skip++;else if(c.ua===c.ca){sub.correct++;sub.score+=c.markC;}else{sub.wrong++;sub.score-=c.markW;}}return [...map.values()];}
+function tableInto(id,headers,rows){const wrap=$(id),table=el('table','report-table'),thead=el('thead'),tr=el('tr'),tbody=el('tbody');for(const h of headers){const th=el('th','',h);th.scope='col';tr.append(th);}thead.append(tr);for(const row of rows){const tr=el('tr');for(const cell of row)tr.append(el('td','',String(cell)));tbody.append(tr);}table.append(thead,tbody);wrap.replaceChildren(table);}
+function renderAnalytics(r){tableInto('subjectStats',['Subject','Total','Correct','Wrong','Skipped','Marks','Time'],r.subjects.map(x=>[x.name,x.total,x.correct,x.wrong,x.skip,`${fmt(x.score)} / ${fmt(x.max)}`,duration(x.ms)]));if(r.subjects.some(x=>x.name==='Untagged'))$('subjectStats').append(el('p','storage-note','Questions without a section tag appear as Untagged; add optional section fields to your question bank for subject analysis.'));$('timeSummary').textContent=`Total active time: ${duration(r.items.reduce((n,c)=>n+c.ms,0))}. Paused time is excluded.`;tableInto('timeStats',['Question','Subject','Status','Time (mm:ss)'],r.items.map(c=>[c.number,c.q.section?secName(c.q.section):'Untagged',!c.ua?'Skipped':c.ua===c.ca?'Correct':'Wrong',duration(c.ms)]));$('retryWrongBtn').disabled=!r.wrong;}
+function retryWrong(){if(!lastReport||!lastReport.wrong||!plan)return;const rounds=completed.map(({round,answers:a})=>{const qs=round.questions.filter((q,i)=>a[i]&&a[i]!==q.a),sections={};for(const q of qs)if(q.section)sections[q.section]=(sections[q.section]||0)+1;return {...round,questions:qs,sections};}).filter(r=>r.questions.length);if(rounds.length)startAttempt({label:plan.label.replace(/ · Wrong questions$/,'')+' · Wrong questions',rounds});}
+function saveHistory(r){const entries=readLocal(HISTORY_KEY,[]);if(!Array.isArray(entries))return;if(entries.some(x=>x.id===attemptId))return;entries.unshift({id:attemptId,label:r.label,date:r.date.toISOString(),score:r.score,max:r.max,correct:r.correct,wrong:r.wrong,skip:r.skip,accuracy:r.accuracy});writeLocal(HISTORY_KEY,entries);}
+function openHistory(){historyBack=document.querySelector('.screen.active')?.id||'uploadScreen';const entries=readLocal(HISTORY_KEY,[]);if(!Array.isArray(entries)||!entries.length)$('historyTable').replaceChildren(el('p','empty-note','No completed attempts yet.'));else tableInto('historyTable',['Exam','Date','Score','Correct','Wrong','Skipped','Accuracy'],entries.map(r=>[r.label,dateText(new Date(r.date)),`${fmt(r.score)} / ${fmt(r.max)}`,r.correct,r.wrong,r.skip,r.accuracy===null?'—':fmt(r.accuracy)+'%']));showScreen('historyScreen');}
+function closeHistory(){showScreen(historyBack);}
+restoreAttempt();
 </script>
 </body>
 </html>
